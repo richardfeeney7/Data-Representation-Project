@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask , jsonify, request
+from flask import Flask , jsonify, request, abort
 
 app=Flask(__name__,
             static_url_path ="",
@@ -50,7 +50,7 @@ def getAllPop():
 
 @app.route("/pop/<int:id>")
 def findByIdPOP(id): # Tested : curl "http://127.0.0.1:5000/pop/1"
-    foundPOP = list(filter(lambda p: p['id'] == id, pop))
+    foundPOP = list(filter(lambda p: p['id'] == id, popMusic))
     if len(foundPOP) == 0:
         return jsonify ({}) , 204
     return jsonify(foundPOP[0])
@@ -73,7 +73,21 @@ def createPOP():
 
 @app.route("/pop/<int:id>", methods=["PUT"]) # Tested : curl -X PUT "http://127.0.0.1:5000/pop/1"
 def updatePOP(id):
-    return "in update for id "+str(id)
+    foundPOP=list(filter(lambda r : r['id'] == id, popMusic))
+    if len(foundPOP) == 0:
+        abort(404)
+    if not request.json:
+        abort(400)
+    if "artist" in request.json and type(request.json["artist"]) != str:
+        abort(400)
+    if "album" in request.json and type(request.json["album"]) is not str:
+        abort(400)
+    if "price" in request.json and type(request.json["price"]) is not int:
+        abort(400)
+    foundPOP[0]["artist"]  = request.json.get("artist",   foundPOP[0]["artist"])
+    foundPOP[0]["album"]   = request.json.get("album",    foundPOP[0]["album"])
+    foundPOP[0]["price"]   = request.json.get("price",    foundPOP[0]["price"])
+    return jsonify( {"pop": foundPOP[0]}) # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/pop/2"
 
 @app.route("/pop/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/pop/1"
 def deletePOP(id):
@@ -90,7 +104,7 @@ def getAllRock():
 
 @app.route("/rock/<int:id>")
 def findByIdROCK(id): # Tested : curl "http://127.0.0.1:5000/rock/1"
-    foundROCK = list(filter(lambda r: r['id'] == id, rock))
+    foundROCK = list(filter(lambda r: r['id'] == id, rockMusic))
     if len(foundROCK) == 0:
         return jsonify ({}) , 204
     return jsonify(foundROCK[0])
@@ -114,7 +128,21 @@ def createROCK():
 
 @app.route("/rock/<int:id>", methods=["PUT"]) # Tested : curl -X PUT "http://127.0.0.1:5000/rock/1"
 def updateROCK(id):
-    return "in update for id "+str(id)
+    foundROCK=list(filter(lambda r : r['id'] == id, rockMusic))
+    if len(foundROCK) == 0:
+        abort(404)
+    if not request.json:
+        abort(400)
+    if "artist" in request.json and type(request.json["artist"]) != str:
+        abort(400)
+    if "album" in request.json and type(request.json["album"]) is not str:
+        abort(400)
+    if "price" in request.json and type(request.json["price"]) is not str:
+        abort(400)
+    foundROCK[0]["artist"]  = request.json.get("artist",   foundROCK[0]["artist"])
+    foundROCK[0]["album"]   = request.json.get("album",    foundROCK[0]["album"])
+    foundROCK[0]["price"]   = request.json.get("price",    foundROCK[0]["price"])
+    return jsonify( {"rock": foundROCK[0]}) # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/rock/2"
 
 @app.route("/rock/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/rock/1"
 def deleteROCK(id):
@@ -131,7 +159,7 @@ def getAllDISCO():
 
 @app.route("/disco/<int:id>")
 def findByIdDISCO(id): # # Tested : curl "http://127.0.0.1:5000/disco/1"
-    foundDISCO = list(filter(lambda d: d['id'] == id, disco))
+    foundDISCO = list(filter(lambda d: d['id'] == id, discoMusic))
     if len(foundDISCO) == 0:
         return jsonify ({}) , 204
     return jsonify(foundDISCO[0])
@@ -154,7 +182,21 @@ def createDISCO():
 
 @app.route("/disco/<int:id>", methods=["PUT"]) # Tested : curl -X PUT "http://127.0.0.1:5000/disco/1"
 def updateDISCO(id):
-    return "in update for id "+str(id)
+    foundDISCO=list(filter(lambda r : r['id'] == id, discoMusic))
+    if len(foundDISCO) == 0:
+        abort(404)
+    if not request.json:
+        abort(400)
+    if "artist" in request.json and type(request.json["artist"]) != str:
+        abort(400)
+    if "album" in request.json and type(request.json["album"]) is not str:
+        abort(400)
+    if "price" in request.json and type(request.json["price"]) is not int:
+        abort(400)
+    foundDISCO[0]["artist"]  = request.json.get("artist",   foundDISCO[0]["artist"])
+    foundDISCO[0]["album"]   = request.json.get("album",    foundDISCO[0]["album"])
+    foundDISCO[0]["price"]   = request.json.get("price",    foundDISCO[0]["price"])
+    return jsonify( {"disco": foundDISCO[0]}) # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/disco/2"
 
 @app.route("/disco/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/disco/1"
 def deleteDISCO(id):
