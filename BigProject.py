@@ -1,5 +1,6 @@
 #!flask/bin/python
 from flask import Flask , jsonify, request, abort
+from flask_cors import CORS
 
 app=Flask(__name__,
             static_url_path ="",
