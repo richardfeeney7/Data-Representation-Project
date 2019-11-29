@@ -73,7 +73,7 @@ def createPOP():
 
 @app.route("/pop/<int:id>", methods=["PUT"]) # Tested : curl -X PUT "http://127.0.0.1:5000/pop/1"
 def updatePOP(id):
-    foundPOP=list(filter(lambda r : r['id'] == id, popMusic))
+    foundPOP=list(filter(lambda p : p['id'] == id, popMusic))
     if len(foundPOP) == 0:
         abort(404)
     if not request.json:
@@ -83,7 +83,7 @@ def updatePOP(id):
     if "album" in request.json and type(request.json["album"]) is not str:
         abort(400)
     if "price" in request.json and type(request.json["price"]) is not int:
-        abort(400)
+        abort(400, description='Price should be an int') # Display message when string is entered instead of int
     foundPOP[0]["artist"]  = request.json.get("artist",   foundPOP[0]["artist"])
     foundPOP[0]["album"]   = request.json.get("album",    foundPOP[0]["album"])
     foundPOP[0]["price"]   = request.json.get("price",    foundPOP[0]["price"])
@@ -91,7 +91,11 @@ def updatePOP(id):
 
 @app.route("/pop/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/pop/1"
 def deletePOP(id):
-    return "in delete for id "+str(id)
+    foundPOP=list(filter(lambda p: p['id']== id, popMusic))
+    if (len(foundPOP) == 0):
+        abort(404)
+    popMusic.remove(foundPOP[0])
+    return jsonify({"done":True})
 
 
 
@@ -137,8 +141,8 @@ def updateROCK(id):
         abort(400)
     if "album" in request.json and type(request.json["album"]) is not str:
         abort(400)
-    if "price" in request.json and type(request.json["price"]) is not str:
-        abort(400)
+    if "price" in request.json and type(request.json["price"]) is not int:
+        abort(400 ,description='Price should be an int') # Display message when string is entered instead of int
     foundROCK[0]["artist"]  = request.json.get("artist",   foundROCK[0]["artist"])
     foundROCK[0]["album"]   = request.json.get("album",    foundROCK[0]["album"])
     foundROCK[0]["price"]   = request.json.get("price",    foundROCK[0]["price"])
@@ -146,7 +150,11 @@ def updateROCK(id):
 
 @app.route("/rock/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/rock/1"
 def deleteROCK(id):
-    return "in delete for id "+str(id)
+    foundROCK = list(filter(lambda r: r['id']== id, rockMusic))
+    if (len(foundROCK) == 0):
+        abort(404)
+    rockMusic.remove(foundROCK[0])
+    return jsonify({"done":True})
 
 
 
@@ -169,7 +177,6 @@ def createDISCO():
     global nextDISCOArtistId
     if not request.json:
         abort(400)
-    # Add other check
     disco = {
         "id": nextDISCOArtistId,
         "artist": request.json["artist"],
@@ -192,7 +199,7 @@ def updateDISCO(id):
     if "album" in request.json and type(request.json["album"]) is not str:
         abort(400)
     if "price" in request.json and type(request.json["price"]) is not int:
-        abort(400)
+        abort(400 ,description='Price should be an int') # Display message when string is entered instead of int
     foundDISCO[0]["artist"]  = request.json.get("artist",   foundDISCO[0]["artist"])
     foundDISCO[0]["album"]   = request.json.get("album",    foundDISCO[0]["album"])
     foundDISCO[0]["price"]   = request.json.get("price",    foundDISCO[0]["price"])
@@ -200,7 +207,11 @@ def updateDISCO(id):
 
 @app.route("/disco/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/disco/1"
 def deleteDISCO(id):
-    return "in delete for id "+str(id)
+    foundDISCO = list(filter(lambda p: p['id']== id, discoMusic))
+    if (len(foundDISCO) == 0):
+        abort(404)
+    discoMusic.remove(foundDISCO[0])
+    return jsonify({"done":True})
 
 if __name__=="__main__":
     app.run(debug= True)
