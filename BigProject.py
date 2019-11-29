@@ -104,7 +104,7 @@ def deletePOP(id):
 # Music Rock ( CURL test was successful : curl "http://127.0.0.1:5000/rock/1" )
 @app.route("/rock")
 def getAllRock():
-    return jsonify(rock)
+    return jsonify(rockMusic)
 
 @app.route("/rock/<int:id>")
 def findByIdROCK(id): # Tested : curl "http://127.0.0.1:5000/rock/1"
@@ -163,7 +163,7 @@ def deleteROCK(id):
 # Music Disco ( CURL test was successful : curl "http://127.0.0.1:5000/disco/1" )
 @app.route("/disco")
 def getAllDISCO():
-    return jsonify(disco)
+    return jsonify(discoMusic)
 
 @app.route("/disco/<int:id>")
 def findByIdDISCO(id): # # Tested : curl "http://127.0.0.1:5000/disco/1"
