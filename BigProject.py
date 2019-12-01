@@ -1,10 +1,8 @@
 #!flask/bin/python
 from flask import Flask , jsonify, request, abort
-from flask_cors import CORS
+#from flask_cors import CORS
 
-app=Flask(__name__,
-            static_url_path ="",
-            static_folder="../")
+app=Flask(__name__,static_url_path ="",static_folder="../")
 
 # POP id is auto incrementing
 # Tested :  curl "http://127.0.0.1:5000/pop"
