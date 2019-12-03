@@ -40,7 +40,7 @@
                      <a class="nav-link text-uppercase text-expanded" href="BigProjectROCKHTML.html">ROCK Music</a>
                   </li>
                   <li class="nav-item px-lg-4">
-                     <a class="nav-link text-uppercase text-expanded" href="BggProjectDISCOHTML.html">DISCO Music</a>
+                     <a class="nav-link text-uppercase text-expanded" href="BigProjectDISCOHTML.html">DISCO Music</a>
                   </li>
                </ul>
             </div>
@@ -49,7 +49,7 @@
       <section class="page-section about-heading">
          <body>
             <div style="padding:20px">
-               <h1 style="color:#3333cc">Music Details</h1>
+               <h1 style="color:#3333cc">Pop Music Details</h1>
                <div> <button id="showCreateButton" class="button" onclick="showCreate()">Add Music</button></div>
                <div>
                   <table class="table" id="musicTable">
@@ -125,7 +125,7 @@
        var form = document.getElementById('createUpdateForm')
    
        var music = {}
-       //music.roomID = form.querySelector('input[name="roomID"]').value
+       music.roomID = form.querySelector('input[name="roomID"]').value
        music.artist = form.querySelector('input[name="artist"]').value
        music.album = form.querySelector('input[name="album"]').value
        music.price = form.querySelector('input[name="price"]').value    
@@ -154,7 +154,7 @@
        var rowElement = tableElement.insertRow(-1)
        rowElement.setAttribute('id',music.id)
        var cell1 = rowElement.insertCell(0);
-       cell1.innerHTML = music.roomID
+       cell1.innerHTML = music.id
        var cell2 = rowElement.insertCell(1);
        cell2.innerHTML = music.artist
        var cell3 = rowElement.insertCell(2);
@@ -178,11 +178,11 @@
    
    }
    function getMusicFromRow(rowElement){
-       var music ={}
-       music.id  = rowElement.getAttribute('id')
+       var music = {}
+       music.id     = rowElement.getAttribute('id')
        music.artist = rowElement.cells[0].firstChild.textContent
-       music.album = rowElement.cells[1].firstChild.textContent
-       music.price = rowElement.cells[2].firstChild.textContent
+       music.album  = rowElement.cells[1].firstChild.textContent
+       music.price  = rowElement.cells[2].firstChild.textContent
        return music
    }
    function setMusicInRow(rowElement, music){
@@ -191,22 +191,22 @@
        rowElement.cells[2].firstChild.textContent= music.album
        rowElement.cells[3].firstChild.textContent= music.price
    }
-   function populateFormWithMusic(Music){
+   function populateFormWithMusic(music){
        var form = document.getElementById('createUpdateForm')
-       form.querySelector('input[name="id"]').disabled = true
-       form.querySelector('input[name="id"]').value  = music.id
-       form.querySelector('input[name="artist"]').value= music.artist
-       form.querySelector('input[name="album"]').value= music.album
-       form.querySelector('input[name="price"]').value= music.price
+       form.querySelector('input[name="id"]').disabled  = true
+       form.querySelector('input[name="id"]').value     = music.id
+       form.querySelector('input[name="artist"]').value = music.artist
+       form.querySelector('input[name="album"]').value  = music.album
+       form.querySelector('input[name="price"]').value  = music.price
        return music
    }
    function getMusicFromForm(){
        var form = document.getElementById('createUpdateForm')
        var music = {}
-       music.id = form.querySelector('input[name="id"]').value
+       music.id     = form.querySelector('input[name="id"]').value
        music.artist = form.querySelector('input[name="artist"]').value
-       music.album = form.querySelector('input[name="album"]').value
-       music.price = form.querySelector('input[name="price"]').value
+       music.album  = form.querySelector('input[name="album"]').value
+       music.price  = form.querySelector('input[name="price"]').value
        console.log(JSON.stringify(music))
        return music
    }
@@ -232,7 +232,7 @@
        });
    
    }
-   function createMusicAjax(Music){
+   function createMusicAjax(music){
        console.log(JSON.stringify(music));
        $.ajax({
            "url": "http://127.0.0.1:5000/pop",
@@ -255,7 +255,7 @@
            }
        });
    }
-   function updateMusicAjax(Music){
+   function updateMusicAjax(music){
       
        console.log(JSON.stringify(music));
        $.ajax({
