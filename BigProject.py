@@ -5,8 +5,7 @@ from musicDAO  import musicDAO
 
 app = Flask(__name__,static_url_path ="",static_folder="")
 
-# POP id is auto incrementing
-# Tested :  curl "http://127.0.0.1:5000/pop"
+# Tested :  curl "http://127.0.0.1:5000/pop
 #popMusic=[
 #    {"id": 1, "artist":"Ariana Grande","album":"Thank U, Next","price":1500},
 #    {"id": 2, "artist":"Billie Eilish","album":"When We All Fall Asleep, Where Do We Go?","price":2500},
