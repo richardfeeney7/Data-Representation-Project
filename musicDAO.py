@@ -99,7 +99,7 @@ class musicDAO:
     self.db.commit()
 
 
-  def deletedisco(self, id):
+  def deleteDISCO(self, id):
     cursor = self.db.cursor()
     sql="delete from discoMusic where id = %s"
     values = (id,) 

@@ -65,23 +65,23 @@ def createPOP():
         abort(400)
     # Add other check
     pop = {
-        "id": nextPOPArtistId,
+        # "id": nextPOPArtistId,
         "artist": request.json["artist"],
         "album": request.json["album"],
         "price": request.json["price"]
     }
-    nextPOPArtistId += 1
+    #nextPOPArtistId += 1
     # popMusic.append(pop)
     addPOP = (pop["artist"], pop["album"], pop["price"])
-    newID = popDAO.create(addPOP)
-    addPOP["id"] = newId
-
-    return jsonify(popMusic) # Tested : curl -i -H "Content-Type:application/json" -X POST -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":1000}" "http://127.0.0.1:5000/pop"
+    newID = musicDAO.createPOP(addPOP)
+    pop["id"] = newID
+    return jsonify(pop) # Tested : curl -i -H "Content-Type:application/json" -X POST -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":1000}" "http://127.0.0.1:5000/pop"
 
 @app.route("/pop/<int:id>", methods=["PUT"]) # Tested : curl -X PUT "http://127.0.0.1:5000/pop/1"
 def updatePOP(id):
-    foundPOP=list(filter(lambda p : p['id'] == id, popMusic))
-    if len(foundPOP) == 0:
+    #foundPOP=list(filter(lambda p : p['id'] == id, popMusic))
+    foundPOP = musicDAO.findByIdPOP(id)
+    if not foundPOP:
         abort(404)
     if not request.json:
         abort(400)
@@ -91,17 +91,19 @@ def updatePOP(id):
         abort(400)
     if "price" in request.json and type(request.json["price"]) is not int:
         abort(400, description='Price should be an int') # Display message when string is entered instead of int
-    foundPOP[0]["artist"]  = request.json.get("artist",   foundPOP[0]["artist"])
-    foundPOP[0]["album"]   = request.json.get("album",    foundPOP[0]["album"])
-    foundPOP[0]["price"]   = request.json.get("price",    foundPOP[0]["price"])
-    return jsonify( {"pop": foundPOP[0]}) # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/pop/2"
+    foundPOP["artist"]  = request.json.get("artist",   foundPOP["artist"])
+    foundPOP["album"]   = request.json.get("album",    foundPOP["album"])
+    foundPOP["price"]   = request.json.get("price",    foundPOP["price"])
+
+    updatePOP = (foundPOP["artist"], foundPOP["album"], foundPOP["price"], foundPOP["id"])
+    musicDAO.updatePOP(updatePOP)
+    return jsonify("foundPOP")
+
+    #return jsonify( {"pop": foundPOP[0]}) # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/pop/2"
 
 @app.route("/pop/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/pop/1"
 def deletePOP(id):
-    foundPOP=list(filter(lambda p: p['id']== id, popMusic))
-    if (len(foundPOP) == 0):
-        abort(404)
-    popMusic.remove(foundPOP[0])
+    musicDAO.deletePOP(id)
     return jsonify({"done":True})
 
 
@@ -132,19 +134,22 @@ def createROCK():
         abort(400)
     # Add other check
     rock = {
-        "id": nextROCKArtistId,
+        #"id": nextROCKArtistId,
         "artist": request.json["artist"],
         "album": request.json["album"],
         "price": request.json["price"]
     }
-    nextROCKArtistId += 1
-    rockMusic.append(rock)
-    return jsonify(rockMusic) # Tested : curl -i -H "Content-Type:application/json" -X POST -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":1000}" "http://127.0.0.1:5000/rock"
+    #nextROCKArtistId += 1
+    #rockMusic.append(rock)
+    addROCK = (rock["artist"], rock["album"], rock["price"])
+    newID = musicDAO.createROCK(addROCK)
+    rock["id"] = newID
+    return jsonify(rock) # Tested : curl -i -H "Content-Type:application/json" -X POST -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":1000}" "http://127.0.0.1:5000/rock"
 
 @app.route("/rock/<int:id>", methods=["PUT"]) # Tested : curl -X PUT "http://127.0.0.1:5000/rock/1"
 def updateROCK(id):
-    foundROCK=list(filter(lambda r : r['id'] == id, rockMusic))
-    if len(foundROCK) == 0:
+    foundROCK =  musicDAO.findByIdROCK(id)
+    if not foundROCK:
         abort(404)
     if not request.json:
         abort(400)
@@ -154,17 +159,18 @@ def updateROCK(id):
         abort(400)
     if "price" in request.json and type(request.json["price"]) is not int:
         abort(400 ,description='Price should be an int') # Display message when string is entered instead of int
-    foundROCK[0]["artist"]  = request.json.get("artist",   foundROCK[0]["artist"])
-    foundROCK[0]["album"]   = request.json.get("album",    foundROCK[0]["album"])
-    foundROCK[0]["price"]   = request.json.get("price",    foundROCK[0]["price"])
-    return jsonify( {"rock": foundROCK[0]}) # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/rock/2"
+    foundROCK["artist"]  = request.json.get("artist",   foundROCK["artist"])
+    foundROCK["album"]   = request.json.get("album",    foundROCK["album"])
+    foundROCK["price"]   = request.json.get("price",    foundROCK["price"])
+
+    updateROCK = (foundROCK["artist"], foundROCK["album"], foundROCK["price"], foundROCK["id"])
+    musicDAO.updateROCK(updateROCK)
+    return jsonify("foundROCK")
+    #return jsonify( {"rock": foundROCK[0]}) # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/rock/2"
 
 @app.route("/rock/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/rock/1"
 def deleteROCK(id):
-    foundROCK = list(filter(lambda r: r['id']== id, rockMusic))
-    if (len(foundROCK) == 0):
-        abort(404)
-    rockMusic.remove(foundROCK[0])
+    musicDAO.deleteROCK(id)
     return jsonify({"done":True})
 
 
@@ -191,19 +197,23 @@ def createDISCO():
     if not request.json:
         abort(400)
     disco = {
-        "id": nextDISCOArtistId,
+        #"id": nextDISCOArtistId,
         "artist": request.json["artist"],
         "album": request.json["album"],
         "price": request.json["price"]
     }
-    nextDISCOArtistId += 1
-    discoMusic.append(disco)
-    return jsonify(discoMusic) # Tested : curl -i -H "Content-Type:application/json" -X POST -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":1000}" "http://127.0.0.1:5000/disco"
+   # nextDISCOArtistId += 1
+
+    addDISCO = (disco["artist"], disco["album"], disco["price"])
+    newID = musicDAO.createDISCO(addDISCO)
+    disco["id"] = newID
+   # discoMusic.append(disco)
+    return jsonify(disco) # Tested : curl -i -H "Content-Type:application/json" -X POST -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":1000}" "http://127.0.0.1:5000/disco"
 
 @app.route("/disco/<int:id>", methods=["PUT"]) # Tested : curl -X PUT "http://127.0.0.1:5000/disco/1"
 def updateDISCO(id):
-    foundDISCO=list(filter(lambda r : r['id'] == id, discoMusic))
-    if len(foundDISCO) == 0:
+    foundDISCO=musicDAO.findByIdDISCO(id)
+    if not foundDISCO:
         abort(404)
     if not request.json:
         abort(400)
@@ -213,17 +223,19 @@ def updateDISCO(id):
         abort(400)
     if "price" in request.json and type(request.json["price"]) is not int:
         abort(400 ,description='Price should be an int') # Display message when string is entered instead of int
-    foundDISCO[0]["artist"]  = request.json.get("artist",   foundDISCO[0]["artist"])
-    foundDISCO[0]["album"]   = request.json.get("album",    foundDISCO[0]["album"])
-    foundDISCO[0]["price"]   = request.json.get("price",    foundDISCO[0]["price"])
-    return jsonify( {"disco": foundDISCO[0]}) # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/disco/2"
+    foundDISCO["artist"]  = request.json.get("artist",   foundDISCO["artist"])
+    foundDISCO["album"]   = request.json.get("album",    foundDISCO["album"])
+    foundDISCO["price"]   = request.json.get("price",    foundDISCO["price"])
+
+    updateDISCO = (foundDISCO["artist"], foundDISCO["album"], foundDISCO["price"], foundDISCO["id"])
+    musicDAO.updateDISCO(updateDISCO)
+    return jsonify("foundDISCO")
+
+    #return jsonify( {"disco": foundDISCO[0]}) # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/disco/2"
 
 @app.route("/disco/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/disco/1"
 def deleteDISCO(id):
-    foundDISCO = list(filter(lambda p: p['id']== id, discoMusic))
-    if (len(foundDISCO) == 0):
-        abort(404)
-    discoMusic.remove(foundDISCO[0])
+    musicDAO.deleteDISCO(id)
     return jsonify({"done":True})
 
 if __name__=="__main__":

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>POP Music</title>
+      <!-- Bootstrap core CSS -->
+      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <!-- Custom fonts for this template -->
+      <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="css/business-casual.min.css" rel="stylesheet">
+   </head>
+   <body>
+      <h1 class="site-heading text-center text-white d-none d-lg-block">
+         <span class="site-heading-lower">POP Music</span>
+      </h1>
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+         <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+               <ul class="navbar-nav mx-auto">
+                  <li class="nav-item px-lg-4">
+                     <a class="nav-link text-uppercase text-expanded" href="index.html">Home
+                     <span class="sr-only">(current)</span>
+                     </a>
+                  </li>
+                  <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="BIgProjectPOPHTML">POP MUsic</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="BIgProjectROCKHTML.html">ROCK Music</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="BIgProjectDISCOHTML">DISCO Music</a>
+                </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <section class="page-section about-heading">
+         <body>
+            <div style="padding:20px">
+               <h1 style="color:#3333cc">Music Details</h1>
+               <div> <button id="showCreateButton" class="button" onclick="showCreate()">Add Music</button></div>
+               <div>
+                  <table class="table" id="musicTable">
+                     <tr>
+                        <th>id</th>
+                        <th>Artist</th>
+                        <th>Album</th>
+                        <th>Price</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                     </tr>
+                  </table>
+               </div>
+               <div id='createUpdateForm' style="display: none">
+                  <h2><span style="color:#3333cc"id="createLabel">Create a New</span> <span style="color: #3333cc"id="updateLabel">Update</span> <span style="color: #3333cc"> Music</span></h2>
+                  <input type="hidden" name="id" size="80" style="margin-top:3px;margin:3px"/><br/>
+                  <b>Artist</b></br>  <input type="text"  name="artist" size="80" style="margin-top:3px;margin:3px"/> <br/>
+                  <b>Album </b><br/>  <input type="text"  name="album"  size="80" style="margin-top:3px;margin:3px"/> <br/>
+                  <b>Price </b><br/>  <input type="text"  name="price"  size="80" style="margin-top:3px;margin:3px"/> <br/>    
+                  <span><button style="background-color: #3333cc;border: none;color: white; width:120px; height:50px;margin:2px " id="doCreateButton" onclick="doCreate()">Create</button></span>
+                  <span><button style="background-color: #3333cc;border: none;color: white; width:120px; height:50px;margin:2px"id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+               </div>
+            </div>
+   </body>
+   </section>
+   <footer class="footer text-faded text-center py-5">
+      <div class="container">
+         <p class="m-0 small">Copyright &copy; Music Website 2019</p>
+      </div>
+   </footer>
+   <!-- Bootstrap core JavaScript -->
+   <script src="vendor/jquery/jquery.min.js"></script>
+   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   </body>
+</html>
+<script>
+   function showCreate(){
+       document.getElementById('showCreateButton').style.display="none"
+       document.getElementById('musicTable').style.display="none"
+       document.getElementById('createUpdateForm').style.display="block"
+   
+       document.getElementById('createLabel').style.display="inline"
+       document.getElementById('updateLabel').style.display="none"
+   
+       document.getElementById('doCreateButton').style.display="block"
+       document.getElementById('doUpdateButton').style.display="none"
+   
+   }
+   function showViewAll(){
+       document.getElementById('showCreateButton').style.display="block"
+       document.getElementById('musicTable').style.display="block"
+       document.getElementById('createUpdateForm').style.display="none"
+   }
+   function showUpdate(buttonElement){
+       document.getElementById('showCreateButton').style.display="none"
+       document.getElementById('musicTable').style.display="none"
+       document.getElementById('createUpdateForm').style.display="block"
+   
+       document.getElementById('createLabel').style.display="none"
+       document.getElementById('updateLabel').style.display="inline"
+   
+       document.getElementById('doCreateButton').style.display="none"
+       document.getElementById('doUpdateButton').style.display="block"
+   
+   
+       var rowElement = buttonElement.parentNode.parentNode
+       // these is a way of finding the closest <tr> which would safer, closest()
+       
+       var music = getMusicFromRow(rowElement)
+       populateFormWithMusic(music)
+   }
+   function doCreate(){
+       var form = document.getElementById('createUpdateForm')
+   
+       var music = {}
+       //music.roomID = form.querySelector('input[name="roomID"]').value
+       music.artist = form.querySelector('input[name="artist"]').value
+       music.album = form.querySelector('input[name="album"]').value
+       music.price = form.querySelector('input[name="price"]').value    
+       console.log(JSON.stringify(music))
+       createMusicAjax(music)
+       clearForm()
+       showViewAll();
+   }
+   function doUpdate(){
+       var music = getMusicFromForm();
+       var rowElement = document.getElementById(music.id);
+       updateMusicAjax(music);
+       setMusicInRow(rowElement,music);
+       clearForm();
+       showViewAll();
+   }
+   function doDelete(r){
+       var tableElement = document.getElementById('musicTable');
+       var rowElement = r.parentNode.parentNode;
+       var index = rowElement.rowIndex;
+       deleteMusicAjax(rowElement.getAttribute("id"));
+       tableElement.deleteRow(index);
+   }
+   function addMusicToTable(music){
+       var tableElement = document.getElementById('musicTable')
+       var rowElement = tableElement.insertRow(-1)
+       rowElement.setAttribute('id',music.id)
+       var cell1 = rowElement.insertCell(0);
+       cell1.innerHTML = music.roomID
+       var cell2 = rowElement.insertCell(1);
+       cell2.innerHTML = music.artist
+       var cell3 = rowElement.insertCell(2);
+       cell3.innerHTML = music.album    
+       var cell4 = rowElement.insertCell(3);
+       cell4.innerHTML = music.price 
+       var cell5 = rowElement.insertCell(4);
+       cell5.innerHTML = '<button class="button" onclick="showUpdate(this)">Update</button>'
+       var cell6 = rowElement.insertCell(5);
+       cell6.innerHTML = '<button class="button" onclick=doDelete(this)>Delete</button>'
+   
+   }
+   
+   function clearForm(){
+       var form = document.getElementById('createUpdateForm')
+   
+       form.querySelector('input[name="id"]').value=''
+       form.querySelector('input[name="artist"]').value=''
+       form.querySelector('input[name="album"]').value=''
+       form.querySelector('input[name="price"]').value=''
+   
+   }
+   function getMusicFromRow(rowElement){
+       var music ={}
+       music.id  = rowElement.getAttribute('id')
+       music.artist = rowElement.cells[0].firstChild.textContent
+       music.album = rowElement.cells[1].firstChild.textContent
+       music.price = rowElement.cells[2].firstChild.textContent
+       return music
+   }
+   function setMusicInRow(rowElement, music){
+       rowElement.cells[0].firstChild.textContent= music.id 
+       rowElement.cells[1].firstChild.textContent= music.artist 
+       rowElement.cells[2].firstChild.textContent= music.album
+       rowElement.cells[3].firstChild.textContent= music.price
+   }
+   function populateFormWithMusic(Music){
+       var form = document.getElementById('createUpdateForm')
+       form.querySelector('input[name="id"]').disabled = true
+       form.querySelector('input[name="id"]').value  = music.id
+       form.querySelector('input[name="artist"]').value= music.artist
+       form.querySelector('input[name="album"]').value= music.album
+       form.querySelector('input[name="price"]').value= music.price
+       return music
+   }
+   function getMusicFromForm(){
+       var form = document.getElementById('createUpdateForm')
+       var music = {}
+       music.id = form.querySelector('input[name="id"]').value
+       music.artist = form.querySelector('input[name="artist"]').value
+       music.album = form.querySelector('input[name="album"]').value
+       music.price = form.querySelector('input[name="price"]').value
+       console.log(JSON.stringify(music))
+       return music
+   }
+   function getAllAjax(){
+       $.ajax({
+           "url": "http://127.0.0.1:5000/pop",
+           "method":"GET",
+           "data":"",
+           "dataType": "JSON",
+           "success":function(result){
+               console.log(result);
+               for (music of result){
+                   addMusicToTable(music);
+               }
+               
+           },
+           "error":function(xhr,status,error){
+               console.log("error: "+status+" msg:"+error);
+               alert("Something went wrong: "+error);
+               // reload the page from the server if the ajax call fails
+               window.location.reload(true);
+           }
+       });
+   
+   }
+   function createMusicAjax(Music){
+       console.log(JSON.stringify(music));
+       $.ajax({
+           "url": "http://127.0.0.1:5000/pop",
+           "method":"POST",
+           "data":JSON.stringify(music),
+           "dataType": "JSON",
+           contentType: "application/json; charset=utf-8",
+           "success":function(result){
+               music.id = result.id;
+               addMusicToTable(music) 
+               clearForm()
+               
+           },
+           "error":function(xhr,status,error){
+               console.log("error: "+status+" msg:"+error);
+               alert("Something went wrong: "+error);
+               // reload the page from the server if the ajax call fails
+               window.location.reload(true);
+   
+           }
+       });
+   }
+   function updateMusicAjax(Music){
+      
+       console.log(JSON.stringify(music));
+       $.ajax({
+           "url": "http://127.0.0.1:5000/pop/"+encodeURI(music.id),
+           "method":"PUT",
+           "data":JSON.stringify(music),
+           "dataType": "JSON",
+           contentType: "application/json; charset=utf-8",
+           "success":function(result){
+               console.log(result);
+                 
+           },
+           "error":function(xhr,status,error){
+               console.log("error: "+status+" msg:"+error);
+               alert("Something went wrong: "+error);
+               // reload the page from the server if the ajax call fails
+               window.location.reload(true);
+            
+           }
+       });
+   }
+   function deleteMusicAjax(id){
+       console.log(JSON.stringify(music));
+       $.ajax({
+           "url": "http://127.0.0.1:5000/pop/"+encodeURI(id),
+           "method":"DELETE",
+           "data":"",
+           "dataType": "JSON",
+           contentType: "application/json; charset=utf-8",
+           "success":function(result){
+               console.log(result);
+                 
+           },
+           "error":function(xhr,status,error){
+               console.log("error: "+status+" msg:"+error);
+               alert("Something went wrong: "+error);
+               // reload the page from the server if the ajax call fails
+               window.location.reload(true);
+           
+           }
+       });
+   }
+   getAllAjax();
+   
+   
+</script>
+</html>
