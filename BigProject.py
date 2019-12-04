@@ -48,8 +48,17 @@ def updatePOP(id):
     if "price" in request.json and type(request.json["price"]) is not int:
         abort(400, description='Price should be an int') # Display message when string is entered instead of int
 
-    updatePOP = (foundPOP["artist"], foundPOP["album"], foundPOP["price"], foundPOP["id"])
-    musicDAO.updatePOP(updatePOP)
+    if "artist" in request.json:
+        foundPOP["artist"] = request.json["artist"]
+    
+    if "album" in request.json:
+        foundPOP["album"] = request.json["album"]
+
+    if "price" in request.json:
+        foundPOP["price"] = request.json["price"]
+    
+    values = (foundPOP["artist"], foundPOP["album"], foundPOP["price"], foundPOP["id"])
+    musicDAO.updatePOP(values)
     return jsonify("foundPOP") # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/pop/2"
 
 @app.route("/pop/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/pop/1"

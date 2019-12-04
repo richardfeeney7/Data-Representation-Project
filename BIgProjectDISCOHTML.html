@@ -17,7 +17,7 @@
    </head>
    <body>
       <h1 class="site-heading text-center text-white d-none d-lg-block">
-         <span class="site-heading-lower">DISCO Music</span>
+         <span class="site-heading-lower">Disco Music</span>
       </h1>
       <!-- Navigation -->
       <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
@@ -34,14 +34,14 @@
                      </a>
                   </li>
                   <li class="nav-item px-lg-4">
-                     <a class="nav-link text-uppercase text-expanded" href="BigProjectPOPHTML.html">POP MUsic</a>
-                  </li>
-                  <li class="nav-item px-lg-4">
-                     <a class="nav-link text-uppercase text-expanded" href="BigProjectROCKHTML.html">ROCK Music</a>
-                  </li>
-                  <li class="nav-item px-lg-4">
-                     <a class="nav-link text-uppercase text-expanded" href="BigProjectDISCOHTML.html">DISCO Music</a>
-                  </li>
+                    <a class="nav-link text-uppercase text-expanded" href="BigProjectPOPHTML.html">POP MUsic</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="BigProjectROCKHTML.html">ROCK Music</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="BigProjectDISCOHTML.html">DISCO Music</a>
+                </li>
                </ul>
             </div>
          </div>
@@ -125,14 +125,12 @@
        var form = document.getElementById('createUpdateForm')
    
        var music = {}
-       //music.id     = form.querySelector('input[name="id"]').value
+       //music.roomID = form.querySelector('input[name="roomID"]').value
        music.artist = form.querySelector('input[name="artist"]').value
-       music.album  = form.querySelector('input[name="album"]').value
-       music.price  = form.querySelector('input[name="price"]').value    
+       music.album = form.querySelector('input[name="album"]').value
+       music.price = form.querySelector('input[name="price"]').value    
        console.log(JSON.stringify(music))
        createMusicAjax(music)
-       clearForm()
-       showViewAll();
    }
    function doUpdate(){
        var music = getMusicFromForm();
@@ -178,33 +176,35 @@
    
    }
    function getMusicFromRow(rowElement){
-       var music = {}
-       music.id     = rowElement.getAttribute('id')
+       var music ={}
+       music.id  = rowElement.getAttribute('id')
        music.artist = rowElement.cells[0].firstChild.textContent
-       music.album  = rowElement.cells[1].firstChild.textContent
-       music.price  = rowElement.cells[2].firstChild.textContent
+       music.album = rowElement.cells[1].firstChild.textContent
+       music.price = rowElement.cells[2].firstChild.textContent
        return music
    }
    function setMusicInRow(rowElement, music){
-       rowElement.cells[0].firstChild.textContent= music.id 
+       //rowElement.cells[0].firstChild.textContent= music.id 
        rowElement.cells[1].firstChild.textContent= music.artist 
        rowElement.cells[2].firstChild.textContent= music.album
        rowElement.cells[3].firstChild.textContent= music.price
    }
-   function populateFormWithMusic(music){
+   function populateFormWithMusic(Music){
        var form = document.getElementById('createUpdateForm')
+       form.querySelector('input[name="id"]').disabled = true
+       form.querySelector('input[name="id"]').value  = music.id
        form.querySelector('input[name="artist"]').value= music.artist
        form.querySelector('input[name="album"]').value= music.album
        form.querySelector('input[name="price"]').value= music.price
        return music
    }
    function getMusicFromForm(){
-       var form  = document.getElementById('createUpdateForm')
+       var form = document.getElementById('createUpdateForm')
        var music = {}
-       music.id     = form.querySelector('input[name="id"]').value
+       music.id = form.querySelector('input[name="id"]').value
        music.artist = form.querySelector('input[name="artist"]').value
-       music.album  = form.querySelector('input[name="album"]').value
-       music.price  = form.querySelector('input[name="price"]').value
+       music.album = form.querySelector('input[name="album"]').value
+       music.price = form.querySelector('input[name="price"]').value
        console.log(JSON.stringify(music))
        return music
    }
@@ -242,6 +242,7 @@
                music.id = result.id;
                addMusicToTable(music) 
                clearForm()
+               showViewAll();
                
            },
            "error":function(xhr,status,error){
@@ -253,11 +254,11 @@
            }
        });
    }
-   function updateMusicAjax(music){
+   function updateMusicAjax(Music){
       
        console.log(JSON.stringify(music));
        $.ajax({
-           "url": "http://127.0.0.1:5000/disco/"+encodeURI(music.id),
+           "url": "http://127.0.0.1:5000/dsico/"+encodeURI(music.id),
            "method":"PUT",
            "data":JSON.stringify(music),
            "dataType": "JSON",
