@@ -48,7 +48,7 @@ def updatePOP(id):
     if "price" in request.json and type(request.json["price"]) is not int:
         abort(400, description='Price should be an int') # Display message when string is entered instead of int
 
-    if "artist" in request.json:
+    if "artist" in request.json: 
         foundPOP["artist"] = request.json["artist"]
     
     if "album" in request.json:
@@ -59,7 +59,7 @@ def updatePOP(id):
     
     values = (foundPOP["artist"], foundPOP["album"], foundPOP["price"], foundPOP["id"])
     musicDAO.updatePOP(values)
-    return jsonify("foundPOP") # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/pop/2"
+    return jsonify(foundPOP) # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/pop/2"
 
 @app.route("/pop/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/pop/1"
 def deletePOP(id):
@@ -117,9 +117,18 @@ def updateROCK(id):
     if "price" in request.json and type(request.json["price"]) is not int:
         abort(400 ,description='Price should be an int') # Display message when string is entered instead of int
 
-    updateROCK = (foundROCK["artist"], foundROCK["album"], foundROCK["price"], foundROCK["id"])
-    musicDAO.updateROCK(updateROCK)
-    return jsonify("foundROCK") # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/rock/2"
+    if "artist" in request.json: 
+        foundROCK["artist"] = request.json["artist"]
+    
+    if "album" in request.json:
+        foundROCK["album"] = request.json["album"]
+
+    if "price" in request.json:
+        foundROCK["price"] = request.json["price"]
+
+    values = (foundROCK["artist"], foundROCK["album"], foundROCK["price"], foundROCK["id"])
+    musicDAO.updateROCK(values)
+    return jsonify(foundROCK) # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/rock/2"
 
 @app.route("/rock/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/rock/1"
 def deleteROCK(id):
@@ -174,9 +183,18 @@ def updateDISCO(id):
     if "price" in request.json and type(request.json["price"]) is not int:
         abort(400 ,description='Price should be an int') # Display message when string is entered instead of int
 
-    updateDISCO = (foundDISCO["artist"], foundDISCO["album"], foundDISCO["price"], foundDISCO["id"])
-    musicDAO.updateDISCO(updateDISCO)
-    return jsonify("foundDISCO") # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/disco/2"
+    if "artist" in request.json: 
+        foundDISCO["artist"] = request.json["artist"]
+    
+    if "album" in request.json:
+        foundDISCO["album"] = request.json["album"]
+
+    if "price" in request.json:
+        foundDISCO["price"] = request.json["price"]
+
+    values = (foundDISCO["artist"], foundDISCO["album"], foundDISCO["price"], foundDISCO["id"])
+    musicDAO.updateDISCO(values)
+    return jsonify(foundDISCO) # Tested :  curl -i -H "Content-Type:application/json" -X PUT -d "{\"artist\":\"Richard\",\"album\":\"Test\",\"price\":10000}" "http://127.0.0.1:5000/disco/2"
 
 @app.route("/disco/<int:id>", methods=["DELETE"]) # Tested : curl -X DELETE "http://127.0.0.1:5000/disco/1"
 def deleteDISCO(id):

@@ -40,9 +40,10 @@ class musicDAO:
 
   def updatePOP(self, values):
     cursor = self.db.cursor()
-    sql="update popMusic set artist= %s, album=%s, price=%s where id = %s" 
+    sql = "update popMusic set artist = %s, album = %s, price = %s where id = %s" 
     cursor.execute(sql, values)
     self.db.commit()
+    print("update Successful")
 
 
   def deletePOP(self, id):

@@ -17,7 +17,7 @@
    </head>
    <body>
       <h1 class="site-heading text-center text-white d-none d-lg-block">
-         <span class="site-heading-lower">Rock Music</span>
+         <span class="site-heading-lower">ROCK Music</span>
       </h1>
       <!-- Navigation -->
       <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
@@ -47,9 +47,8 @@
          </div>
       </nav>
       <section class="page-section about-heading">
-         <body>
             <div style="padding:20px">
-               <h1 style="color:#3333cc">Rock Music Details</h1>
+               <h1 style="color:#3333cc">ROCK Music Details</h1>
                <div> <button id="showCreateButton" class="button" onclick="showCreate()">Add Music</button></div>
                <div>
                   <table class="table" id="musicTable">
@@ -64,16 +63,15 @@
                   </table>
                </div>
                <div id='createUpdateForm' style="display: none">
-                  <h2><span style="color:#3333cc"id="createLabel">Create a New</span> <span style="color: #3333cc"id="updateLabel">Update</span> <span style="color: #3333cc"> Music</span></h2>
+                  <h2><span style="color:#3333cc" id="createLabel"> Create a New </span> <span style="color: #3333cc" id="updateLabel"> Update</span> <span style="color: #3333cc"> Music</span></h2>
                   <input type="hidden" name="id" size="80" style="margin-top:3px;margin:3px"/><br/>
-                  <b>Artist</b></br>  <input type="text"  name="artist" size="80" style="margin-top:3px;margin:3px"/> <br/>
+                  <b>Artist</b><br/>  <input type="text"  name="artist" size="80" style="margin-top:3px;margin:3px"/> <br/>
                   <b>Album </b><br/>  <input type="text"  name="album"  size="80" style="margin-top:3px;margin:3px"/> <br/>
                   <b>Price </b><br/>  <input type="text"  name="price"  size="80" style="margin-top:3px;margin:3px"/> <br/>    
                   <span><button style="background-color: #3333cc;border: none;color: white; width:120px; height:50px;margin:2px " id="doCreateButton" onclick="doCreate()">Create</button></span>
-                  <span><button style="background-color: #3333cc;border: none;color: white; width:120px; height:50px;margin:2px"id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+                  <span><button style="background-color: #3333cc;border: none;color: white; width:120px; height:50px;margin:2px"  id="doUpdateButton" onclick="doUpdate()">Update</button></span>
                </div>
             </div>
-   </body>
    </section>
    <footer class="footer text-faded text-center py-5">
       <div class="container">
@@ -133,11 +131,11 @@
        createMusicAjax(music)
    }
    function doUpdate(){
-       var music = getMusicFromForm();
-       var rowElement = document.getElementById(music.id);
-       updateMusicAjax(music);
-       setMusicInRow(rowElement,music);
-       clearForm();
+       var music = getMusicFromForm()
+       var rowElement = document.getElementById(music.id)
+       updateMusicAjax(music)
+       setMusicInRow(rowElement,music)
+       clearForm()
        showViewAll();
    }
    function doDelete(r){
@@ -178,9 +176,9 @@
    function getMusicFromRow(rowElement){
        var music ={}
        music.id  = rowElement.getAttribute('id')
-       music.artist = rowElement.cells[0].firstChild.textContent
-       music.album = rowElement.cells[1].firstChild.textContent
-       music.price = rowElement.cells[2].firstChild.textContent
+       music.artist = rowElement.cells[1].firstChild.textContent
+       music.album = rowElement.cells[2].firstChild.textContent
+       music.price = rowElement.cells[3].firstChild.textContent
        return music
    }
    function setMusicInRow(rowElement, music){
@@ -189,7 +187,7 @@
        rowElement.cells[2].firstChild.textContent= music.album
        rowElement.cells[3].firstChild.textContent= music.price
    }
-   function populateFormWithMusic(Music){
+   function populateFormWithMusic(music){
        var form = document.getElementById('createUpdateForm')
        form.querySelector('input[name="id"]').disabled = true
        form.querySelector('input[name="id"]').value  = music.id
@@ -204,7 +202,7 @@
        music.id = form.querySelector('input[name="id"]').value
        music.artist = form.querySelector('input[name="artist"]').value
        music.album = form.querySelector('input[name="album"]').value
-       music.price = form.querySelector('input[name="price"]').value
+       music.price = parseInt(form.querySelector('input[name="price"]').value,10)
        console.log(JSON.stringify(music))
        return music
    }
@@ -242,8 +240,7 @@
                music.id = result.id;
                addMusicToTable(music) 
                clearForm()
-               showViewAll();
-               
+               showViewAll();       
            },
            "error":function(xhr,status,error){
                console.log("error: "+status+" msg:"+error);
@@ -254,8 +251,7 @@
            }
        });
    }
-   function updateMusicAjax(Music){
-      
+   function updateMusicAjax(music){
        console.log(JSON.stringify(music));
        $.ajax({
            "url": "http://127.0.0.1:5000/rock/"+encodeURI(music.id),
