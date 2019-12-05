@@ -1,9 +1,25 @@
 #!flask/bin/python
-from flask import Flask , jsonify, request, abort
+from flask import Flask , jsonify, request, abort,  render_template, redirect, url_for, request
 from musicDAO  import musicDAO
 #from rockDAO import rockDAO
 
 app = Flask(__name__,static_url_path ="",static_folder="")
+
+
+# Once server is running open the login page... 
+# http://127.0.0.1:5000/
+@app.route("/", methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        # I have set the username and password here to admin
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            # If UN and PW are not true Print
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            # Send to index page of the site if UN and PW = True
+            return render_template("indexpage.html")
+    return render_template("login.html", error=error)
 
 @app.route("/pop")
 def getAllPOP():

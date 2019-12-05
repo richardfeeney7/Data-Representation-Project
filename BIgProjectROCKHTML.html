@@ -48,9 +48,8 @@
       </nav>
       <section class="page-section about-heading">
             <div style="padding:20px">
-               <h1 style="color:#3333cc">ROCK Music Details</h1>
                <div> <button id="showCreateButton" class="button" onclick="showCreate()">Add Music</button></div>
-               <div>
+               <div style="background-color:lightblue">
                   <table class="table" id="musicTable">
                      <tr>
                         <th>id</th>
@@ -62,16 +61,17 @@
                      </tr>
                   </table>
                </div>
-               <div id='createUpdateForm' style="display: none">
-                  <h2><span style="color:#3333cc" id="createLabel"> Create a New </span> <span style="color: #3333cc" id="updateLabel"> Update</span> <span style="color: #3333cc"> Music</span></h2>
-                  <input type="hidden" name="id" size="80" style="margin-top:3px;margin:3px"/><br/>
-                  <b>Artist</b><br/>  <input type="text"  name="artist" size="80" style="margin-top:3px;margin:3px"/> <br/>
-                  <b>Album </b><br/>  <input type="text"  name="album"  size="80" style="margin-top:3px;margin:3px"/> <br/>
-                  <b>Price </b><br/>  <input type="text"  name="price"  size="80" style="margin-top:3px;margin:3px"/> <br/>    
-                  <span><button style="background-color: #3333cc;border: none;color: white; width:120px; height:50px;margin:2px " id="doCreateButton" onclick="doCreate()">Create</button></span>
-                  <span><button style="background-color: #3333cc;border: none;color: white; width:120px; height:50px;margin:2px"  id="doUpdateButton" onclick="doUpdate()">Update</button></span>
-               </div>
-            </div>
+               <div style="background-color:lightblue">
+                    <div id='createUpdateForm' style="display: none">
+                       <h2><span id="createLabel"> Create  New </span> <span id="updateLabel"> Update</span> <span> Music</span></h2>
+                       <input type="hidden" name="id" size="80"/><br/>
+                       <b>Artist</b><br/>  <input type="text"  name="artist" /> <br/>
+                       <b>Album </b><br/>  <input type="text"  name="album"  /> <br/>
+                       <b>Price </b><br/>  <input type="text"  name="price"  /> <br/>    
+                       <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
+                       <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+                    </div>
+                 </div>
    </section>
    <footer class="footer text-faded text-center py-5">
       <div class="container">
