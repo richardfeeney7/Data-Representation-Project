@@ -3,7 +3,8 @@ from flask import Flask , jsonify, request, abort,  render_template, redirect, u
 from musicDAO  import musicDAO
 #from rockDAO import rockDAO
 
-app = Flask(__name__,static_url_path ="",static_folder="")
+# Overide searching for a template folder when displaying pages (template_folder=""))
+app = Flask(__name__,static_url_path ="",static_folder="", template_folder="")
 
 
 # Once server is running open the login page... 
@@ -18,7 +19,7 @@ def login():
             error = 'Invalid Credentials. Please try again.'
         else:
             # Send to index page of the site if UN and PW = True
-            return render_template("indexpage.html")
+            return render_template("/indexpage.html")
     return render_template("login.html", error=error)
 
 @app.route("/pop")
