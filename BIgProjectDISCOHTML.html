@@ -19,7 +19,7 @@
       <h1 class="site-heading text-center text-white d-none d-lg-block">
          <span class="site-heading-lower">DISCO Music</span>
       </h1>
-      <!-- Navigation -->
+      <!-- Navigation / Links To Other Pages / Databases -->
       <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
          <div class="container">
             <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
@@ -48,8 +48,12 @@
       </nav>
       <section class="page-section about-heading">
             <div style="padding:20px">
+
+                <!--When Button is clicked call showCreate Function to add a new record-->
                <div> <button id="showCreateButton" class="button" onclick="showCreate()">Add Music</button></div>
                <div style="background-color:lightblue">
+
+                <!-- Add table to hold output and buttons-->
                   <table class="table" id="musicTable">
                      <tr>
                         <th>id</th>
@@ -60,21 +64,23 @@
                         <th>Delete</th>
                      </tr>
                   </table>
-               </div>
-               <form name="myForm" onsubmit="return validateForm()">     
+               </div>   
                <div style="background-color:lightblue">
                     <div id='createUpdateForm' style="display: none">
                        <h2><span id="createLabel"> Create  New </span> <span id="updateLabel"> Update</span> <span> Music</span></h2>
                        <input type="hidden" name="id" size="80"/><br/>
                        <b>Artist</b><br/>  <input type="text"  name="artist" /> <br/>
                        <b>Album </b><br/>  <input type="text"  name="album"  /> <br/>
-                       <b>Price </b><br/>  <input type="number"name="price"  /> <br/>    
+                       <b>Price </b><br/>  <input type="number"name="price"  /> <br/>   
+                       <!-- Call doCreate Function To Add Record --> 
                        <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
+                       <!-- Call doCreate Function To Update Record --> 
                        <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
                     </div>
                  </div>
-                </form>
    </section>
+
+   <!-- Footer Message --> 
    <footer class="footer text-faded text-center py-5">
       <div class="container">
          <p class="m-0 small">Copyright &copy; Music Website 2019</p>
@@ -85,9 +91,19 @@
    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
    </body>
 </html>
+
+<!-- Webpage Scripts Section --> 
+<!-- In this section note these things so you can understand
+     1) Style.display = "none" Means that the element will not be displayed.
+     2) Style.display = "block" Means that the Element is rendered as a block-level element.
+     3) Style.display = "inline" Means that the Element is rendered as an inline element.
+     4) getElementById() is a method that will return the element that has the ID attribute with the specified value.
+-->
 <script>
+
+    // Show Create
    function showCreate(){
-       document.getElementById('showCreateButton').style.display="none"
+       document.getElementById('showCreateButton').style.display="none" 
        document.getElementById('musicTable').style.display="none"
        document.getElementById('createUpdateForm').style.display="block"
    
@@ -97,11 +113,15 @@
        document.getElementById('doCreateButton').style.display="block"
        document.getElementById('doUpdateButton').style.display="none"
    }
+
+   // Show All
    function showViewAll(){
        document.getElementById('showCreateButton').style.display="block"
        document.getElementById('musicTable').style.display="block"
        document.getElementById('createUpdateForm').style.display="none"
    }
+
+   // Show Update
    function showUpdate(buttonElement){
        document.getElementById('showCreateButton').style.display="none"
        document.getElementById('musicTable').style.display="none"
@@ -118,11 +138,16 @@
        // these is a way of finding the closest <tr> which would safer, closest()
        
        var music = getMusicFromRow(rowElement)
+       // Add current firls information from DB 
        populateFormWithMusic(music)
    }
+
+   // Create Function
    function doCreate(){
        var form = document.getElementById('createUpdateForm')
-   
+
+        // Add details entered by used to the database
+        // The querySelector() is used to retrieve the value entered by user and will be added to DB
        var music = {}
        //music.roomID = form.querySelector('input[name="roomID"]').value
        music.artist = form.querySelector('input[name="artist"]').value
@@ -131,7 +156,10 @@
        console.log(JSON.stringify(music))
        createMusicAjax(music)
    }
+
+   // Update function
    function doUpdate(){
+       // Find by ID and make changes where the user has specified. Once entered close the window and show all records.
        var music = getMusicFromForm()
        var rowElement = document.getElementById(music.id)
        updateMusicAjax(music)
@@ -139,13 +167,18 @@
        clearForm()
        showViewAll();
    }
+
+   // Delete Function
    function doDelete(r){
+       // When the delete button is selected, find record by ID and delete
        var tableElement = document.getElementById('musicTable');
        var rowElement = r.parentNode.parentNode;
        var index = rowElement.rowIndex;
        deleteMusicAjax(rowElement.getAttribute("id"));
        tableElement.deleteRow(index);
    }
+
+   // Display the table populated with all records in the DB
    function addMusicToTable(music){
        var tableElement = document.getElementById('musicTable')
        var rowElement = tableElement.insertRow(-1)
@@ -164,6 +197,7 @@
        cell6.innerHTML = '<button class="button" onclick=doDelete(this)>Delete</button>'
    }
    
+    // Function will clear the form by using value=""
    function clearForm(){
        var form = document.getElementById('createUpdateForm')
    
@@ -187,6 +221,8 @@
        rowElement.cells[2].firstChild.textContent= music.album
        rowElement.cells[3].firstChild.textContent= music.price
    }
+
+    // Populate the table with the music + ID is disabled
    function populateFormWithMusic(music){
        var form = document.getElementById('createUpdateForm')
        form.querySelector('input[name="id"]').disabled = true
@@ -206,9 +242,14 @@
        console.log(JSON.stringify(music))
        return music
    }
+
+    // Ajax section
+    // The information for this is pulled from using the DAO file that selects what is needed from mySQL
+
+   // This function will get all that is in the DB / Display error if cant find
    function getAllAjax(){
        $.ajax({
-           "url": "http://127.0.0.1:5000/disco",
+           "url": "http://127.0.0.1:5000/disco", 
            "method":"GET",
            "data":"",
            "dataType": "JSON",
@@ -228,6 +269,8 @@
        });
    
    }
+
+   // This function is used to create and store a new record in the DB / Display error if cant find
    function createMusicAjax(music){
        console.log(JSON.stringify(music));
        $.ajax({
@@ -251,6 +294,8 @@
            }
        });
    }
+
+   // This function is used to update a record in the DB / Display error if cant find
    function updateMusicAjax(music){
        console.log(JSON.stringify(music));
        $.ajax({
@@ -272,6 +317,8 @@
            }
        });
    }
+
+   // This function is used to delete a record in the DB / Display error if cant find
    function deleteMusicAjax(id){
        console.log(JSON.stringify(music));
        $.ajax({
