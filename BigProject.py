@@ -1,7 +1,6 @@
 #!flask/bin/python
 from flask import Flask , jsonify, request, abort,  render_template, redirect, url_for, request
-from musicDAO  import musicDAO
-#from rockDAO import rockDAO
+from musicDAO  import musicDAO # Link to DAO file
 
 # Overide searching for a template folder when displaying pages (template_folder=""))
 app = Flask(__name__,static_url_path ="",static_folder="", template_folder="")
@@ -22,6 +21,7 @@ def login():
             return render_template("/indexpage.html")
     return render_template("login.html", error=error)
 
+# Get all pop that is in DAO and store in Var Result
 @app.route("/pop")
 def getAllPOP():
     results = musicDAO.getAllPOP()
