@@ -207,9 +207,10 @@
        console.log(JSON.stringify(music))
        return music
    }
+   host = windows.location.origin // Used for pythonanywhere so my pythonanywhere address will be used and not 127.0 etc
    function getAllAjax(){
        $.ajax({
-           "url": "http://127.0.0.1:5000/pop",
+           "url": "host/pop",
            "method":"GET",
            "data":"",
            "dataType": "JSON",

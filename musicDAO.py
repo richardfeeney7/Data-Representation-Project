@@ -1,16 +1,15 @@
 import mysql.connector   #  pip3 install mysql-connector-python
-import dbconfig as cfg   #  Import created config file
 
 class musicDAO:
   db=""
   # Connecting to Database
   def __init__(self):
     self.db = mysql.connector.connect( 
-    host=cfg.mysql["host"],
-    user=cfg.mysql["user"],
-    password=cfg.mysql["password"],
-    database=cfg.mysql["database"]
-    ) 
+    host="localhost",
+    user="root",
+    password="root",
+    database="music"
+    )
 
 # POP MUSIC SECTION
   # Select all from POP
