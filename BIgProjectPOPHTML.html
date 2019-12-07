@@ -210,7 +210,7 @@
    host = windows.location.origin // Used for pythonanywhere so my pythonanywhere address will be used and not 127.0 etc
    function getAllAjax(){
        $.ajax({
-           "url": "host/pop",
+           "url": host+"/pop",
            "method":"GET",
            "data":"",
            "dataType": "JSON",
