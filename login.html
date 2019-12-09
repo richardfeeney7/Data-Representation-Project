@@ -43,12 +43,13 @@
 					
 					</div>
 					</div>
-					</div>
-            </form>
-            {% if error %}
-            <p class="error"><strong>Error:</strong> {{ error }}
-          {% endif %}
                </div>
+               <!-- Display error if password is incorrect-->
+               {% if error %}
+                   <p class="error"><strong>Error:</strong> {{ error }}
+                {% endif %}
+            </form>
+          </div>
 			</div>
       </section>
       <footer class="footer text-faded text-center py-5">

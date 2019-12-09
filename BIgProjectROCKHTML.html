@@ -15,7 +15,9 @@
       <!-- Custom styles for this template -->
       <link href="css/business-casual.min.css" rel="stylesheet">
    </head>
-   <body>
+
+   <!-- The onload here will redirect the user back to the login page if direct access to this web address is entered -->
+   <body onload="if (document.referrer=='')self.location='/';">
       <h1 class="site-heading text-center text-white d-none d-lg-block">
          <span class="site-heading-lower">ROCK Music</span>
       </h1>

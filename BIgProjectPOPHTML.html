@@ -15,7 +15,9 @@
       <!-- Custom styles for this template -->
       <link href="css/business-casual.min.css" rel="stylesheet">
    </head>
-   <body>
+
+     <!-- The onload here will redirect the user back to the login page if direct access to this web address is entered -->
+   <body onload="if (document.referrer=='')self.location='/';">
       <h1 class="site-heading text-center text-white d-none d-lg-block">
          <span class="site-heading-lower">POP Music</span>
       </h1>
@@ -29,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                <ul class="navbar-nav mx-auto">
                   <li class="nav-item px-lg-4">
-                     <a class="nav-link text-uppercase text-expanded" href="index.html">Home
+                     <a class="nav-link text-uppercase text-expanded" href="indexpage.html">Home
                      <span class="sr-only">(current)</span>
                      </a>
                   </li>

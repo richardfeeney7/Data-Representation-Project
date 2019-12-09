@@ -14,8 +14,9 @@
       <!-- Custom styles for this template -->
       <link href="css/business-casual.min.css" rel="stylesheet">
    </head>
-   <body>
 
+     <!-- The onload here will redirect the user back to the login page if direct access to this web address is entered -->
+   <body onload="if (document.referrer=='')self.location='/';">
       <h1 class="site-heading text-center text-white d-none d-lg-block">
          <span class="site-heading-lower">Welcome To The Media Space</span>
       </h1>
@@ -57,6 +58,7 @@
                   <p class="mb-3">Welcome to my website where I have displayed some of the most popular music genres. 
                      Here is where I keep a database of music that I like. 
                   </p>
+                  
                </div>
             </div>
          </div>
@@ -69,5 +71,23 @@
       <!-- Bootstrap core JavaScript -->
       <script src="vendor/jquery/jquery.min.js"></script>
       <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-   </body>
+
+      <script>
+            var data = null;
+
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+            
+            xhr.addEventListener("readystatechange", function () {
+               if (this.readyState === this.DONE) {
+                  console.log(this.responseText);
+               }
+            });
+            
+            xhr.open("GET", "https://online-music.p.rapidapi.com/online-music.su");
+            xhr.setRequestHeader("x-rapidapi-host", "online-music.p.rapidapi.com");
+            xhr.setRequestHeader("x-rapidapi-key", "b52ee5fb9fmsh344b78cdf8931b3p105bcdjsnc37b86ece919");
+            
+            xhr.send(data);
+      </script>
 </html>
