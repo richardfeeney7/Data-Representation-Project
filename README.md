@@ -22,3 +22,11 @@ Please note that I have used Plotly's Python graphing library to create interact
 2. I have created three tables in mySQL that will hold information / data on Music Genres. One the application is live these tables can be modified using CRUD and the queries are all generated from the musicDAO.py file.
 3. I have used Bootstrap within my website and added some of my own external and internal CSS. AJAX calls are also made within the HTML files and the contents will  be displayed nicely pn the webpage. I have also implemented a YouTube API on each page that is linked to three different playlists that I have created for this project. 
 4. BigProject.py file is used to make the requested server queries and will return it in the form of a JSON objects.
+
+### Bibliography
+1. W3schools.com. (2019). AJAX Introduction. [online] Available at: https://www.w3schools.com/xml/ajax_intro.asp [Accessed 10 Dec. 2019]. <br>
+2. Grinberg, M. (2019). The Flask Mega-Tutorial Part I: Hello, World! - miguelgrinberg.com. [online] Blog.miguelgrinberg.com. Available at: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world [Accessed 10 Dec. 2019].<br>
+3. Mark Otto, a. (2019). Bootstrap. [online] Getbootstrap.com. Available at: https://getbootstrap.com/ [Accessed 10 Dec. 2019].<br>
+4. W3schools.com. (2019). How To Create a Login Form. [online] Available at: https://www.w3schools.com/howto/howto_css_login_form.asp [Accessed 5 Dec. 2019].
+5. Google Developers. (2019). API Reference  |  YouTube Data API  |  Google Developers. [online] Available at: https://developers.google.com/youtube/v3/docs [Accessed 10 Dec. 2019].<br>
+6. W3schools.com. (2019). CSS Tutorial. [online] Available at: https://www.w3schools.com/css/ [Accessed 10 Dec. 2019].
