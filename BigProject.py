@@ -1,7 +1,6 @@
 #!flask/bin/python
 from flask import Flask , jsonify, request, abort,  render_template, redirect, url_for, request
 from musicDAO  import musicDAO # Link to DAO file
-import dbconfig as cfg   #  Import created config file
 
 # Overide searching for a template folder when displaying pages (template_folder=""))
 app = Flask(__name__,static_url_path ="",static_folder="", template_folder="")
