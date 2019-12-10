@@ -12,11 +12,12 @@ class musicDAO:
     database=cfg.mysql["database"]
     ) 
 
+
 # POP MUSIC SECTION
   # Select all from POP
   def getAllPOP(self):
     cursor = self.db.cursor() 
-    sql="select * from popMusic" 
+    sql="select * from popmusic" 
     cursor.execute(sql)
     results = cursor.fetchall() 
     returnArray = []
@@ -27,7 +28,7 @@ class musicDAO:
    # Find from POP where ID == ?
   def findByIdPOP(self, id):
     cursor = self.db.cursor()
-    sql="select * from popMusic where id = %s" 
+    sql="select * from popmusic where id = %s" 
     values = (id,)
     cursor.execute(sql, values) 
     result = cursor.fetchone() 
@@ -36,7 +37,7 @@ class musicDAO:
   # Add new POP to database
   def createPOP(self, values):
     cursor = self.db.cursor()
-    sql="insert into popMusic (artist, album, price) values (%s,%s,%s)" 
+    sql="insert into popmusic (artist, album, price) values (%s,%s,%s)" 
     cursor.execute(sql, values)
     self.db.commit() 
     return cursor.lastrowid  
@@ -44,7 +45,7 @@ class musicDAO:
   # Update the Database
   def updatePOP(self, values):
     cursor = self.db.cursor()
-    sql = "update popMusic set artist = %s, album = %s, price = %s where id = %s" 
+    sql = "update popmusic set artist = %s, album = %s, price = %s where id = %s" 
     cursor.execute(sql, values)
     self.db.commit()
     print("update Successful")
@@ -52,7 +53,7 @@ class musicDAO:
   # Delete by ID
   def deletePOP(self, id):
     cursor = self.db.cursor()
-    sql="delete from popMusic where id = %s"
+    sql="delete from popmusic where id = %s"
     values = (id,) 
     cursor.execute(sql, values)
     self.db.commit() 

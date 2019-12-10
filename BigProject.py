@@ -1,6 +1,7 @@
 #!flask/bin/python
 from flask import Flask , jsonify, request, abort,  render_template, redirect, url_for, request
 from musicDAO  import musicDAO # Link to DAO file
+import dbconfig as cfg   #  Import created config file
 
 # Overide searching for a template folder when displaying pages (template_folder=""))
 app = Flask(__name__,static_url_path ="",static_folder="", template_folder="")
@@ -63,7 +64,7 @@ def updatePOP(id):
     if "album" in request.json and type(request.json["album"]) is not str:
         abort(400)
     if "price" in request.json and type(request.json["price"]) is not int:
-        abort(400, description='Price should be an int') # Display message when string is entered instead of int
+        abort(400, description='price should be an int') # Display message when string is entered instead of int
 
     if "artist" in request.json: 
         foundPOP["artist"] = request.json["artist"]
@@ -132,7 +133,7 @@ def updateROCK(id):
     if "album" in request.json and type(request.json["album"]) is not str:
         abort(400)
     if "price" in request.json and type(request.json["price"]) is not int:
-        abort(400 ,description='Price should be an int') # Display message when string is entered instead of int
+        abort(400 ,description='price should be an int') # Display message when string is entered instead of int
 
     if "artist" in request.json: 
         foundROCK["artist"] = request.json["artist"]
@@ -198,7 +199,7 @@ def updateDISCO(id):
     if "album" in request.json and type(request.json["album"]) is not str:
         abort(400)
     if "price" in request.json and type(request.json["price"]) is not int:
-        abort(400 ,description='Price should be an int') # Display message when string is entered instead of int
+        abort(400 ,description='price should be an int') # Display message when string is entered instead of int
 
     if "artist" in request.json: 
         foundDISCO["artist"] = request.json["artist"]

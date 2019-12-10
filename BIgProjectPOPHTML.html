@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="">
       <meta name="author" content="">
-      <title>POP Music</title>
+      <title>pop Music</title>
       <!-- Bootstrap core CSS -->
       <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -14,17 +14,39 @@
       <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
       <!-- Custom styles for this template -->
       <link href="css/business-casual.min.css" rel="stylesheet">
+
+      <style type="text/css">
+        /* Youtube CSS*/
+        .containerVideo {
+           width: 95%;
+           background-color: #fff;
+           margin: 0 auto;
+           align-items: center;
+        }
+
+        /* Youtube CSS*/
+        article {
+           display: flex;
+           align-items: center;
+           padding: 8px 12px;
+           border: 2px solid white;
+           border-radius: 8px;
+           margin: 0 auto;
+        }  
+
+    </style>
+    
    </head>
 
-     <!-- The onload here will redirect the user back to the login page if direct access to this web address is entered -->
+   <!-- The onload here will redirect the user back to the login page if direct access to this web address is entered -->
    <body onload="if (document.referrer=='')self.location='/';">
       <h1 class="site-heading text-center text-white d-none d-lg-block">
-         <span class="site-heading-lower">POP Music</span>
+         <span class="site-heading-lower">pop Music</span>
       </h1>
       <!-- Navigation / Links To Other Pages / Databases -->
       <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
          <div class="container">
-            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">ROCK Music</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -48,6 +70,34 @@
             </div>
          </div>
       </nav>
+
+      <section class="page-section clearfix">
+        <div class="container">
+           <div class="intro">
+              <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="img/pop.jpg" alt="">
+              <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                 <h2 class="section-heading mb-4">
+                    <span class="section-heading-lower">POP Music</span>
+                 </h2>
+                 <p class="mb-3">Modern pop music originated from the United States and the United Kingdom. 
+                     Even though it is internationally recognized, most regions in the world have their own 
+                     variation of pop music. Pop music started around the beginning of ‘The Jazz Age.’ 
+                     At that time, it was referred to as ‘Dance Music.’ The difference, however, 
+                     is that dance music is basically any music form that is made for dancing. Pop, 
+                     on the other hand, has meaningful lyrics. It can be listened to. 
+
+                     <br>
+                     <br>
+
+                     Below you will find a table that you can make modifications too. Why not add in some of your
+                     Artist, Albums and Price?. I have already added five of the most popular in 2019. 
+                     Below that table I have linked (from YouTube) five of my current favourite tracks, Have 
+                     a listen and Enjoy :)  
+                 </p>
+              </div>
+           </div>
+        </div>
+     </section>
       <section class="page-section about-heading">
             <div style="padding:20px">
 
@@ -68,20 +118,31 @@
                   </table>
                </div>
                <div style="background-color:lightblue">
-               <div id='createUpdateForm' style="display: none">
-                  <h2><span id="createLabel"> Create  New </span> <span id="updateLabel"> Update</span> <span> Music</span></h2>
-                  <input type="hidden" name="id" size="80"/><br/>
-                  <b>Artist</b><br/>  <input type="text"   name="artist" /> <br/>
-                  <b>Album </b><br/>  <input type="text"   name="album"  /> <br/>
-                  <b>Price </b><br/>  <input type="number" name="price"  /> <br/>    
-                  <!-- Call doCreate Function To Add Record --> 
-                  <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
-                  <!-- Call doCreate Function To Update Record --> 
-                  <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
-               </div>
-            </div>
-            </section>
+                    <div id='createUpdateForm' style="display: none">
+                       <h2><span id="createLabel"> Create  New </span> <span id="updateLabel"> Update</span> <span> Music</span></h2>
+                       <input type="hidden" name="id" size="80"/><br/>
+                       <b>Artist</b><br/>  <input type="text"    name="artist" /> <br/>
+                       <b>Album </b><br/>  <input type="text"    name="album"  /> <br/>
+                       <b>Price </b><br/>  <input type="number"  name="price"  /> <br/>    
+                       <!-- Call doCreate Function To Add Record --> 
+                       <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
+                       <!-- Call doCreate Function To Update Record --> 
+                       <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+                    </div>
+                 </div>
    </section>
+
+   <!-- Section that is used to pace the youtube API on the webpage.  -->
+   <section>
+    <div class="containerVideo">
+    <section id="video"> <!-- This ID is where the video will be played. With it the script would do nothing-->
+    </section>
+
+    <main> <!-- This main has a ref in the script and will display the videos that can be played.-->
+    </main>
+
+</div>
+</section>
 
    <!-- Footer Message --> 
    <footer class="footer text-faded text-center py-5">
@@ -104,7 +165,7 @@
 -->
 <script>
 
-    // Show Create
+      // Show Create
    function showCreate(){
        document.getElementById('showCreateButton').style.display="none"
        document.getElementById('musicTable').style.display="none"
@@ -124,7 +185,7 @@
        document.getElementById('createUpdateForm').style.display="none"
    }
 
-   // Show Update
+   // Show Update 
    function showUpdate(buttonElement){
        document.getElementById('showCreateButton').style.display="none"
        document.getElementById('musicTable').style.display="none"
@@ -171,10 +232,8 @@
        showViewAll();
    }
 
-   // Delete Function
    function doDelete(r){
-
-        // When the delete button is selected, find record by ID and delete
+       // When the delete button is selected, find record by ID and delete
        var tableElement = document.getElementById('musicTable');
        var rowElement = r.parentNode.parentNode;
        var index = rowElement.rowIndex;
@@ -182,7 +241,7 @@
        tableElement.deleteRow(index);
    }
 
-    // Display the table populated with all records in the DB
+   // Display the table populated with all records in the DB
    function addMusicToTable(music){
        var tableElement = document.getElementById('musicTable')
        var rowElement = tableElement.insertRow(-1)
@@ -201,8 +260,8 @@
        cell6.innerHTML = '<button class="button" onclick=doDelete(this)>Delete</button>'
    
    }
-   
-   // Function will clear the form by using value=""
+
+    // Function will clear the form by using value=""
    function clearForm(){
        var form = document.getElementById('createUpdateForm')
    
@@ -227,7 +286,7 @@
        rowElement.cells[3].firstChild.textContent= music.price
    }
 
-   // Populate the table with the music + ID is disabled
+    // Populate the table with the music + ID is disabled
    function populateFormWithMusic(music){
        var form = document.getElementById('createUpdateForm')
        form.querySelector('input[name="id"]').disabled = true
@@ -248,12 +307,12 @@
        return music
    }
 
+
    // Ajax section
    // The information for this is pulled from using the DAO file that selects what is needed from mySQL
 
    // This function will get all that is in the DB / Display error if cant find
    function getAllAjax(){
-       // The information for this can be found in the DAO file
        $.ajax({
            "url": "http://127.0.0.1:5000/pop",
            "method":"GET",
@@ -275,6 +334,7 @@
        });
    
    }
+
 
    // This function is used to create and store a new record in the DB / Display error if cant find
    function createMusicAjax(music){
@@ -300,6 +360,7 @@
            }
        });
    }
+
 
    // This function is used to update a record in the DB / Display error if cant find
    function updateMusicAjax(music){
@@ -347,6 +408,73 @@
        });
    }
    getAllAjax();
+
+        $(document).ready(function () {
+
+        var key = 'AIzaSyApezaS819rzXxnOXH0xagPfnlvHfRxvr8';
+        var playlistId = 'PLsC0_grDhdgAtqptY6n4H5YbG44uDrbT2';
+        var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
+
+
+        var options = {
+            part: 'snippet',
+            key: key,
+            maxResults: 5,
+            playlistId: playlistId
+        }
+
+        loadVids();
+
+        function loadVids() {
+                $.getJSON(URL, options, function (data) {
+                    var id = data.items[0].snippet.resourceId.videoId;
+                    mainVid(id);
+                    resultsLoop(data);
+                });
+
+        // iframe that will play video in the Play list by ID
+        // Addeded ?autoplay=1 so the video will play once selected and the user wont have to press p
+        function mainVid(id) {
+            $('#video').html(`
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/${id}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            `);
+
+            // Event that will play the video that is selected. Without this event the images will be shown but wont play when clicked
+            // apart for the first video in the list
+            $('main').on('click', 'article', function () {
+                var id = $(this).attr('data-key');
+                mainVid(id);
+            });
+        }
+
+        }
+
+        function resultsLoop(data) {
+            $.each(data.items, function (i, item) {
+
+                var thumb = item.snippet.thumbnails.medium.url;
+                var title = item.snippet.title;
+                var desc = item.snippet.description.substring(0, 100);
+                var vid = item.snippet.resourceId.videoId;
+
+
+                // Append the music from the playlist to be displayed on the screen
+                $('main').append(`
+                <article class="item" data-key="${vid}">
+
+                    <img src="${thumb}" alt="" class="thumb">
+                    <div class="details">
+                    <h4>${title}</h4>
+                    <p>${desc}</p>
+                    </div>
+
+                </article>
+                `);
+            });
+        }
+
+
+});
    
    
 </script>

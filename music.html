@@ -3,19 +3,8 @@
 
 <head>
     <style type="text/css">
-        @mixin font-base {
-            padding: 0;
-            margin: 0;
-            line-height: 1.3;
-            font-weight: 600;
-        }
-        
-        h4 {
-            @include font-base;
-        }
         
         p {
-            @include font-base;
             color: grey;
             font-size: 0.7rem;
         }
@@ -58,9 +47,6 @@
             border: 2px solid white;
             border-radius: 8px;
             margin: 0 auto;
-            &:hover {
-                border: 2px solid #ff9999;
-            }
         }
         
         .thumb {
@@ -100,14 +86,14 @@
        $(document).ready(function () {
 
         var key = 'AIzaSyApezaS819rzXxnOXH0xagPfnlvHfRxvr8';
-        var playlistId = 'PL4o29bINVT4EG_y-k5jGoOu3-Am8Nvi10';
+        var playlistId = 'PLsC0_grDhdgAtqptY6n4H5YbG44uDrbT2';
         var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
 
 
         var options = {
             part: 'snippet',
             key: key,
-            maxResults: 1,
+            maxResults: 20,
             playlistId: playlistId
         }
 
