@@ -14,31 +14,26 @@
       <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
       <!-- Custom styles for this template -->
       <link href="css/business-casual.min.css" rel="stylesheet">
-
       <style type="text/css">
-        /* Youtube CSS*/
-        .containerVideo {
-           width: 95%;
-           background-color: #fff;
-           margin: 0 auto;
-           align-items: center;
-        }
-
-        /* Youtube CSS*/
-        article {
-           display: flex;
-           align-items: center;
-           padding: 8px 12px;
-           border: 2px solid white;
-           border-radius: 8px;
-           margin: 0 auto;
-        }  
-
-    </style>
-    
+         /* Youtube CSS*/
+         .containerVideo {
+         width: 95%;
+         background-color: #fff;
+         margin: 0 auto;
+         align-items: center;
+         }
+         /* Youtube CSS*/
+         article {
+         display: flex;
+         align-items: center;
+         padding: 8px 12px;
+         border: 2px solid white;
+         border-radius: 8px;
+         margin: 0 auto;
+         }  
+      </style>
    </head>
-
-     <!-- The onload here will redirect the user back to the login page if direct access to this web address is entered -->
+   <!-- The onload here will redirect the user back to the login page if direct access to this web address is entered -->
    <body onload="if (document.referrer=='')self.location='/';">
       <h1 class="site-heading text-center text-white d-none d-lg-block">
          <span class="site-heading-lower">DISCO Music</span>
@@ -58,427 +53,418 @@
                      </a>
                   </li>
                   <li class="nav-item px-lg-4">
-                    <a class="nav-link text-uppercase text-expanded" href="BigProjectPOPHTML.html">POP MUsic</a>
-                    </li>
-                    <li class="nav-item px-lg-4">
-                        <a class="nav-link text-uppercase text-expanded" href="BigProjectROCKHTML.html">ROCK Music</a>
-                    </li>
-                    <li class="nav-item px-lg-4">
-                        <a class="nav-link text-uppercase text-expanded" href="BigProjectDISCOHTML.html">DISCO Music</a>
-                </li>
+                     <a class="nav-link text-uppercase text-expanded" href="BigProjectPOPHTML.html">POP MUsic</a>
+                  </li>
+                  <li class="nav-item px-lg-4">
+                     <a class="nav-link text-uppercase text-expanded" href="BigProjectROCKHTML.html">ROCK Music</a>
+                  </li>
+                  <li class="nav-item px-lg-4">
+                     <a class="nav-link text-uppercase text-expanded" href="BigProjectDISCOHTML.html">DISCO Music</a>
+                  </li>
                </ul>
             </div>
          </div>
       </nav>
-
       <section class="page-section clearfix">
-            <div class="container">
-               <div class="intro">
-                  <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="img/disco.jpg" alt="">
-                  <div class="intro-text left-0 text-center bg-faded p-5 rounded">
-                     <h2 class="section-heading mb-4">
-                        <span class="section-heading-lower">DISCO Music</span>
-                     </h2>
-                     <p class="mb-3">
-                        
-                         Disco is a genre of dance music blending soul, funk, rhythm and blues, and pop that emerged during the 
-                         late 1960's and early 70's in New York City. It is characterized by heavy bass lines, strong beats, and 
-                         the incorporation of early electronic instruments like the synthesizer.
-                         <br>
-                         <br>
-    
-                         Below you will find a table that you can make modifications too. Why not add in some of your
-                         favourite tracks?. Below that table I have linked form YouTube 5 of my current favourite tracks, Have 
-                         a listen and Enjoy some POP :)  
-                     </p>
-                  </div>
+         <div class="container">
+            <div class="intro">
+               <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="img/disco.jpg" alt="">
+               <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                  <h2 class="section-heading mb-4">
+                     <span class="section-heading-lower">DISCO Music</span>
+                  </h2>
+                  <p class="mb-3">
+                     Disco is a genre of dance music blending soul, funk, rhythm and blues, and pop that emerged during the 
+                     late 1960's and early 70's in New York City. It is characterized by heavy bass lines, strong beats, and 
+                     the incorporation of early electronic instruments like the synthesizer.
+                     <br>
+                     <br>
+                     Below you will find a table that you can make modifications too. Why not add in some of your
+                     favourite tracks?. Below that table I have linked form YouTube 5 of my current favourite tracks, Have 
+                     a listen and Enjoy some POP :)  
+                  </p>
                </div>
             </div>
-         </section>
+         </div>
+      </section>
       <section class="page-section about-heading">
-            <div style="padding:20px">
-
-                <!--When Button is clicked call showCreate Function to add a new record-->
-               <div> <button id="showCreateButton" class="button" onclick="showCreate()">Add Music</button></div>
-               <div style="background-color:lightblue">
-
-                <!-- Add table to hold output and buttons-->
-                  <table class="table" id="musicTable">
-                     <tr>
-                        <th>id</th>
-                        <th>Artist</th>
-                        <th>Album</th>
-                        <th>Price</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                     </tr>
-                  </table>
-               </div>   
-               <div style="background-color:lightblue">
-                    <div id='createUpdateForm' style="display: none">
-                       <h2><span id="createLabel"> Create  New </span> <span id="updateLabel"> Update</span> <span> Music</span></h2>
-                       <input type="hidden" name="id" size="80"/><br/>
-                       <b>Artist</b><br/>  <input type="text"  name="artist" /> <br/>
-                       <b>Album </b><br/>  <input type="text"  name="album"  /> <br/>
-                       <b>Price </b><br/>  <input type="number"name="price"  /> <br/>   
-                       <!-- Call doCreate Function To Add Record --> 
-                       <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
-                       <!-- Call doCreate Function To Update Record --> 
-                       <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
-                    </div>
-                 </div>
-   </section>
-
-    <!-- Section that is used to pace the youtube API on the webpage.  -->
-    <section>
-            <div class="containerVideo">
-            <section id="video"> <!-- This ID is where the video will be played. With it the script would do nothing-->
+         <div style="padding:20px">
+         <!--When Button is clicked call showCreate Function to add a new record-->
+         <div> <button id="showCreateButton" class="button" onclick="showCreate()">Add Music</button></div>
+         <div style="background-color:lightblue">
+            <!-- Add table to hold output and buttons-->
+            <table class="table" id="musicTable">
+               <tr>
+                  <th>id</th>
+                  <th>Artist</th>
+                  <th>Album</th>
+                  <th>Price</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+               </tr>
+            </table>
+         </div>
+         <div style="background-color:lightblue">
+            <div id='createUpdateForm' style="display: none">
+               <h2><span id="createLabel"> Create  New </span> <span id="updateLabel"> Update</span> <span> Music</span></h2>
+               <input type="hidden" name="id" size="80"/><br/>
+               <b>Artist</b><br/>  <input type="text"  name="artist" /> <br/>
+               <b>Album </b><br/>  <input type="text"  name="album"  /> <br/>
+               <b>Price </b><br/>  <input type="number"name="price"  /> <br/>   
+               <!-- Call doCreate Function To Add Record --> 
+               <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
+               <!-- Call doCreate Function To Update Record --> 
+               <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+            </div>
+         </div>
+      </section>
+      <!-- Section that is used to pace the youtube API on the webpage.  -->
+      <section>
+         <div class="containerVideo">
+            <section id="video">
+               <!-- This ID is where the video will be played. With it the script would do nothing-->
             </section>
-        
-            <main> <!-- This main has a ref in the script and will display the videos that can be played.-->
+            <main>
+               <!-- This main has a ref in the script and will display the videos that can be played.-->
             </main>
-        
-        </div>
-        </section>
-
-   <!-- Footer Message --> 
-   <footer class="footer text-faded text-center py-5">
-      <div class="container">
-         <p class="m-0 small">Copyright &copy; Music Website 2019</p>
-      </div>
-   </footer>
-   <!-- Bootstrap core JavaScript -->
-   <script src="vendor/jquery/jquery.min.js"></script>
-   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+         </div>
+      </section>
+      <!-- Footer Message --> 
+      <footer class="footer text-faded text-center py-5">
+         <div class="container">
+            <p class="m-0 small">Copyright &copy; Music Website 2019</p>
+         </div>
+      </footer>
+      <!-- Bootstrap core JavaScript -->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
    </body>
 </html>
-
 <!-- Webpage Scripts Section --> 
 <!-- In this section note these things so you can understand
-     1) Style.display = "none" Means that the element will not be displayed.
-     2) Style.display = "block" Means that the Element is rendered as a block-level element.
-     3) Style.display = "inline" Means that the Element is rendered as an inline element.
-     4) getElementById() is a method that will return the element that has the ID attribute with the specified value.
--->
+   1) Style.display = "none" Means that the element will not be displayed.
+   2) Style.display = "block" Means that the Element is rendered as a block-level element.
+   3) Style.display = "inline" Means that the Element is rendered as an inline element.
+   4) getElementById() is a method that will return the element that has the ID attribute with the specified value.
+   -->
 <script>
-
-    // Show Create
+   // Show Create
    function showCreate(){
-       document.getElementById('showCreateButton').style.display="none" 
-       document.getElementById('musicTable').style.display="none"
-       document.getElementById('createUpdateForm').style.display="block"
+      document.getElementById('showCreateButton').style.display="none" 
+      document.getElementById('musicTable').style.display="none"
+      document.getElementById('createUpdateForm').style.display="block"
    
-       document.getElementById('createLabel').style.display="inline"
-       document.getElementById('updateLabel').style.display="none"
+      document.getElementById('createLabel').style.display="inline"
+      document.getElementById('updateLabel').style.display="none"
    
-       document.getElementById('doCreateButton').style.display="block"
-       document.getElementById('doUpdateButton').style.display="none"
+      document.getElementById('doCreateButton').style.display="block"
+      document.getElementById('doUpdateButton').style.display="none"
    }
-
+   
    // Show All
    function showViewAll(){
-       document.getElementById('showCreateButton').style.display="block"
-       document.getElementById('musicTable').style.display="block"
-       document.getElementById('createUpdateForm').style.display="none"
+      document.getElementById('showCreateButton').style.display="block"
+      document.getElementById('musicTable').style.display="block"
+      document.getElementById('createUpdateForm').style.display="none"
    }
-
+   
    // Show Update
    function showUpdate(buttonElement){
-       document.getElementById('showCreateButton').style.display="none"
-       document.getElementById('musicTable').style.display="none"
-       document.getElementById('createUpdateForm').style.display="block"
+      document.getElementById('showCreateButton').style.display="none"
+      document.getElementById('musicTable').style.display="none"
+      document.getElementById('createUpdateForm').style.display="block"
    
-       document.getElementById('createLabel').style.display="none"
-       document.getElementById('updateLabel').style.display="inline"
+      document.getElementById('createLabel').style.display="none"
+      document.getElementById('updateLabel').style.display="inline"
    
-       document.getElementById('doCreateButton').style.display="none"
-       document.getElementById('doUpdateButton').style.display="block"
+      document.getElementById('doCreateButton').style.display="none"
+      document.getElementById('doUpdateButton').style.display="block"
    
    
-       var rowElement = buttonElement.parentNode.parentNode
-       // these is a way of finding the closest <tr> which would safer, closest()
-       
-       var music = getMusicFromRow(rowElement)
-       // Add current firls information from DB 
-       populateFormWithMusic(music)
+      var rowElement = buttonElement.parentNode.parentNode
+      // these is a way of finding the closest <tr> which would safer, closest()
+      
+      var music = getMusicFromRow(rowElement)
+      // Add current firls information from DB 
+      populateFormWithMusic(music)
    }
-
+   
    // Create Function
    function doCreate(){
-       var form = document.getElementById('createUpdateForm')
-
-        // Add details entered by used to the database
-        // The querySelector() is used to retrieve the value entered by user and will be added to DB
-       var music = {}
-       //music.roomID = form.querySelector('input[name="roomID"]').value
-       music.artist = form.querySelector('input[name="artist"]').value
-       music.album = form.querySelector('input[name="album"]').value
-       music.price = form.querySelector('input[name="price"]').value    
-       console.log(JSON.stringify(music))
-       createMusicAjax(music)
+      var form = document.getElementById('createUpdateForm')
+   
+       // Add details entered by used to the database
+       // The querySelector() is used to retrieve the value entered by user and will be added to DB
+      var music = {}
+      //music.roomID = form.querySelector('input[name="roomID"]').value
+      music.artist = form.querySelector('input[name="artist"]').value
+      music.album = form.querySelector('input[name="album"]').value
+      music.price = form.querySelector('input[name="price"]').value    
+      console.log(JSON.stringify(music))
+      createMusicAjax(music)
    }
-
+   
    // Update function
    function doUpdate(){
-       // Find by ID and make changes where the user has specified. Once entered close the window and show all records.
-       var music = getMusicFromForm()
-       var rowElement = document.getElementById(music.id)
-       updateMusicAjax(music)
-       setMusicInRow(rowElement,music)
-       clearForm()
-       showViewAll();
+      // Find by ID and make changes where the user has specified. Once entered close the window and show all records.
+      var music = getMusicFromForm()
+      var rowElement = document.getElementById(music.id)
+      updateMusicAjax(music)
+      setMusicInRow(rowElement,music)
+      clearForm()
+      showViewAll();
    }
-
+   
    // Delete Function
    function doDelete(r){
-       // When the delete button is selected, find record by ID and delete
-       var tableElement = document.getElementById('musicTable');
-       var rowElement = r.parentNode.parentNode;
-       var index = rowElement.rowIndex;
-       deleteMusicAjax(rowElement.getAttribute("id"));
-       tableElement.deleteRow(index);
+      // When the delete button is selected, find record by ID and delete
+      var tableElement = document.getElementById('musicTable');
+      var rowElement = r.parentNode.parentNode;
+      var index = rowElement.rowIndex;
+      deleteMusicAjax(rowElement.getAttribute("id"));
+      tableElement.deleteRow(index);
    }
-
+   
    // Display the table populated with all records in the DB
    function addMusicToTable(music){
-       var tableElement = document.getElementById('musicTable')
-       var rowElement = tableElement.insertRow(-1)
-       rowElement.setAttribute('id',music.id)
-       var cell1 = rowElement.insertCell(0);
-       cell1.innerHTML = music.id
-       var cell2 = rowElement.insertCell(1);
-       cell2.innerHTML = music.artist
-       var cell3 = rowElement.insertCell(2);
-       cell3.innerHTML = music.album    
-       var cell4 = rowElement.insertCell(3);
-       cell4.innerHTML = music.price 
-       var cell5 = rowElement.insertCell(4);
-       cell5.innerHTML = '<button class="button" onclick="showUpdate(this)">Update</button>'
-       var cell6 = rowElement.insertCell(5);
-       cell6.innerHTML = '<button class="button" onclick=doDelete(this)>Delete</button>'
+      var tableElement = document.getElementById('musicTable')
+      var rowElement = tableElement.insertRow(-1)
+      rowElement.setAttribute('id',music.id)
+      var cell1 = rowElement.insertCell(0);
+      cell1.innerHTML = music.id
+      var cell2 = rowElement.insertCell(1);
+      cell2.innerHTML = music.artist
+      var cell3 = rowElement.insertCell(2);
+      cell3.innerHTML = music.album    
+      var cell4 = rowElement.insertCell(3);
+      cell4.innerHTML = music.price 
+      var cell5 = rowElement.insertCell(4);
+      cell5.innerHTML = '<button class="button" onclick="showUpdate(this)">Update</button>'
+      var cell6 = rowElement.insertCell(5);
+      cell6.innerHTML = '<button class="button" onclick=doDelete(this)>Delete</button>'
    }
    
-    // Function will clear the form by using value=""
+   // Function will clear the form by using value=""
    function clearForm(){
-       var form = document.getElementById('createUpdateForm')
+      var form = document.getElementById('createUpdateForm')
    
-       form.querySelector('input[name="id"]').value=''
-       form.querySelector('input[name="artist"]').value=''
-       form.querySelector('input[name="album"]').value=''
-       form.querySelector('input[name="price"]').value=''
+      form.querySelector('input[name="id"]').value=''
+      form.querySelector('input[name="artist"]').value=''
+      form.querySelector('input[name="album"]').value=''
+      form.querySelector('input[name="price"]').value=''
    
    }
    function getMusicFromRow(rowElement){
-       var music ={}
-       music.id  = rowElement.getAttribute('id')
-       music.artist = rowElement.cells[1].firstChild.textContent
-       music.album = rowElement.cells[2].firstChild.textContent
-       music.price = rowElement.cells[3].firstChild.textContent
-       return music
+      var music ={}
+      music.id  = rowElement.getAttribute('id')
+      music.artist = rowElement.cells[1].firstChild.textContent
+      music.album = rowElement.cells[2].firstChild.textContent
+      music.price = rowElement.cells[3].firstChild.textContent
+      return music
    }
    function setMusicInRow(rowElement, music){
-       //rowElement.cells[0].firstChild.textContent= music.id 
-       rowElement.cells[1].firstChild.textContent= music.artist 
-       rowElement.cells[2].firstChild.textContent= music.album
-       rowElement.cells[3].firstChild.textContent= music.price
+      //rowElement.cells[0].firstChild.textContent= music.id 
+      rowElement.cells[1].firstChild.textContent= music.artist 
+      rowElement.cells[2].firstChild.textContent= music.album
+      rowElement.cells[3].firstChild.textContent= music.price
    }
-
-    // Populate the table with the music + ID is disabled
+   
+   // Populate the table with the music + ID is disabled
    function populateFormWithMusic(music){
-       var form = document.getElementById('createUpdateForm')
-       form.querySelector('input[name="id"]').disabled = true
-       form.querySelector('input[name="id"]').value  = music.id
-       form.querySelector('input[name="artist"]').value= music.artist
-       form.querySelector('input[name="album"]').value= music.album
-       form.querySelector('input[name="price"]').value= music.price
-       return music
+      var form = document.getElementById('createUpdateForm')
+      form.querySelector('input[name="id"]').disabled = true
+      form.querySelector('input[name="id"]').value  = music.id
+      form.querySelector('input[name="artist"]').value= music.artist
+      form.querySelector('input[name="album"]').value= music.album
+      form.querySelector('input[name="price"]').value= music.price
+      return music
    }
    function getMusicFromForm(){
-       var form = document.getElementById('createUpdateForm')
-       var music = {}
-       music.id = form.querySelector('input[name="id"]').value
-       music.artist = form.querySelector('input[name="artist"]').value
-       music.album = form.querySelector('input[name="album"]').value
-       music.price = parseInt(form.querySelector('input[name="price"]').value,10)
-       console.log(JSON.stringify(music))
-       return music
+      var form = document.getElementById('createUpdateForm')
+      var music = {}
+      music.id = form.querySelector('input[name="id"]').value
+      music.artist = form.querySelector('input[name="artist"]').value
+      music.album = form.querySelector('input[name="album"]').value
+      music.price = parseInt(form.querySelector('input[name="price"]').value,10)
+      console.log(JSON.stringify(music))
+      return music
    }
-
-    // Ajax section
-    // The information for this is pulled from using the DAO file that selects what is needed from mySQL
-
+   
+   // Ajax section
+   // The information for this is pulled from using the DAO file that selects what is needed from mySQL
+   
    // This function will get all that is in the DB / Display error if cant find
    function getAllAjax(){
-       $.ajax({
-           "url": "http://127.0.0.1:5000/disco", 
-           "method":"GET",
-           "data":"",
-           "dataType": "JSON",
-           "success":function(result){
-               console.log(result);
-               for (music of result){
-                   addMusicToTable(music);
-               }
-               
-           },
-           "error":function(xhr,status,error){
-               console.log("error: "+status+" msg:"+error);
-               alert("Something went wrong: "+error);
-               // reload the page from the server if the ajax call fails
-               window.location.reload(true);
-           }
-       });
+      $.ajax({
+          "url": "http://127.0.0.1:5000/disco", 
+          "method":"GET",
+          "data":"",
+          "dataType": "JSON",
+          "success":function(result){
+              console.log(result);
+              for (music of result){
+                  addMusicToTable(music);
+              }
+              
+          },
+          "error":function(xhr,status,error){
+              console.log("error: "+status+" msg:"+error);
+              alert("Something went wrong: "+error);
+              // reload the page from the server if the ajax call fails
+              window.location.reload(true);
+          }
+      });
    
    }
-
+   
    // This function is used to create and store a new record in the DB / Display error if cant find
    function createMusicAjax(music){
-       console.log(JSON.stringify(music));
-       $.ajax({
-           "url": "http://127.0.0.1:5000/disco",
-           "method":"POST",
-           "data":JSON.stringify(music),
-           "dataType": "JSON",
-           contentType: "application/json; charset=utf-8",
-           "success":function(result){
-               music.id = result.id;
-               addMusicToTable(music) 
-               clearForm()
-               showViewAll();       
-           },
-           "error":function(xhr,status,error){
-               console.log("error: "+status+" msg:"+error);
-               alert("Something went wrong: "+error);
-               // reload the page from the server if the ajax call fails
-               window.location.reload(true);
+      console.log(JSON.stringify(music));
+      $.ajax({
+          "url": "http://127.0.0.1:5000/disco",
+          "method":"POST",
+          "data":JSON.stringify(music),
+          "dataType": "JSON",
+          contentType: "application/json; charset=utf-8",
+          "success":function(result){
+              music.id = result.id;
+              addMusicToTable(music) 
+              clearForm()
+              showViewAll();       
+          },
+          "error":function(xhr,status,error){
+              console.log("error: "+status+" msg:"+error);
+              alert("Something went wrong: "+error);
+              // reload the page from the server if the ajax call fails
+              window.location.reload(true);
    
-           }
-       });
+          }
+      });
    }
-
+   
    // This function is used to update a record in the DB / Display error if cant find
    function updateMusicAjax(music){
-       console.log(JSON.stringify(music));
-       $.ajax({
-           "url": "http://127.0.0.1:5000/disco/"+encodeURI(music.id),
-           "method":"PUT",
-           "data":JSON.stringify(music),
-           "dataType": "JSON",
-           contentType: "application/json; charset=utf-8",
-           "success":function(result){
-               console.log(result);
-                 
-           },
-           "error":function(xhr,status,error){
-               console.log("error: "+status+" msg:"+error);
-               alert("Something went wrong: "+error);
-               // reload the page from the server if the ajax call fails
-               window.location.reload(true);
-            
-           }
-       });
+      console.log(JSON.stringify(music));
+      $.ajax({
+          "url": "http://127.0.0.1:5000/disco/"+encodeURI(music.id),
+          "method":"PUT",
+          "data":JSON.stringify(music),
+          "dataType": "JSON",
+          contentType: "application/json; charset=utf-8",
+          "success":function(result){
+              console.log(result);
+                
+          },
+          "error":function(xhr,status,error){
+              console.log("error: "+status+" msg:"+error);
+              alert("Something went wrong: "+error);
+              // reload the page from the server if the ajax call fails
+              window.location.reload(true);
+           
+          }
+      });
    }
-
+   
    // This function is used to delete a record in the DB / Display error if cant find
    function deleteMusicAjax(id){
-       console.log(JSON.stringify(music));
-       $.ajax({
-           "url": "http://127.0.0.1:5000/disco/"+encodeURI(id),
-           "method":"DELETE",
-           "data":"",
-           "dataType": "JSON",
-           contentType: "application/json; charset=utf-8",
-           "success":function(result){
-               console.log(result);
-                 
-           },
-           "error":function(xhr,status,error){
-               console.log("error: "+status+" msg:"+error);
-               alert("Something went wrong: "+error);
-               // reload the page from the server if the ajax call fails
-               window.location.reload(true);
-           
-           }
-       });
+      console.log(JSON.stringify(music));
+      $.ajax({
+          "url": "http://127.0.0.1:5000/disco/"+encodeURI(id),
+          "method":"DELETE",
+          "data":"",
+          "dataType": "JSON",
+          contentType: "application/json; charset=utf-8",
+          "success":function(result){
+              console.log(result);
+                
+          },
+          "error":function(xhr,status,error){
+              console.log("error: "+status+" msg:"+error);
+              alert("Something went wrong: "+error);
+              // reload the page from the server if the ajax call fails
+              window.location.reload(true);
+          
+          }
+      });
    }
    getAllAjax();
-
-    function validateForm() {
-    var x = document.forms["myForm"]["artist"].value;
-    var x = document.forms["myForm"]["album"].value;
-    var x = document.forms["myForm"]["price"].value;
-    if (x == "") {
-        alert("All fields  must be filled out");
-        return false;
-    }
-    }
-
-    
+   
+   function validateForm() {
+   var x = document.forms["myForm"]["artist"].value;
+   var x = document.forms["myForm"]["album"].value;
+   var x = document.forms["myForm"]["price"].value;
+   if (x == "") {
+       alert("All fields  must be filled out");
+       return false;
+   }
+   }
+   
+   
    $(document).ready(function () {
-
-var key = 'AIzaSyApezaS819rzXxnOXH0xagPfnlvHfRxvr8';
-var playlistId = 'PLsC0_grDhdgBXTfRlxjBoBr6IYXA0SgqM';
-var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
-
-
-var options = {
-    part: 'snippet',
-    key: key,
-    maxResults: 5,
-    playlistId: playlistId
-}
-
-loadVids();
-
-function loadVids() {
-        $.getJSON(URL, options, function (data) {
-            var id = data.items[0].snippet.resourceId.videoId;
-            mainVid(id);
-            resultsLoop(data);
-        });
-
-// iframe that will play video in the Play list by ID
-// Addeded ?autoplay=1 so the video will play once selected and the user wont have to press p
-function mainVid(id) {
-    $('#video').html(`
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/${id}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    `);
-
-    // Event that will play the video that is selected. Without this event the images will be shown but wont play when clicked
-    // apart for the first video in the list
-    $('main').on('click', 'article', function () {
-        var id = $(this).attr('data-key');
-        mainVid(id);
-    });
-}
-
-}
-
-function resultsLoop(data) {
-    $.each(data.items, function (i, item) {
-
-        var thumb = item.snippet.thumbnails.medium.url;
-        var title = item.snippet.title;
-        var desc = item.snippet.description.substring(0, 100);
-        var vid = item.snippet.resourceId.videoId;
-
-
-        // Append the music from the playlist to be displayed on the screen
-        $('main').append(`
-        <article class="item" data-key="${vid}">
-
-            <img src="${thumb}" alt="" class="thumb">
-            <div class="details">
-            <h4>${title}</h4>
-            <p>${desc}</p>
-            </div>
-
-        </article>
-        `);
-    });
-}
-
-
-});
+   
+   var key = 'AIzaSyApezaS819rzXxnOXH0xagPfnlvHfRxvr8';
+   var playlistId = 'PLsC0_grDhdgBXTfRlxjBoBr6IYXA0SgqM';
+   var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
+   
+   
+   var options = {
+   part: 'snippet',
+   key: key,
+   maxResults: 5,
+   playlistId: playlistId
+   }
+   
+   loadVids();
+   
+   function loadVids() {
+       $.getJSON(URL, options, function (data) {
+           var id = data.items[0].snippet.resourceId.videoId;
+           mainVid(id);
+           resultsLoop(data);
+       });
+   
+   // iframe that will play video in the Play list by ID
+   // Addeded ?autoplay=1 so the video will play once selected and the user wont have to press p
+   function mainVid(id) {
+   $('#video').html(`
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/${id}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+   `);
+   
+   // Event that will play the video that is selected. Without this event the images will be shown but wont play when clicked
+   // apart for the first video in the list
+   $('main').on('click', 'article', function () {
+       var id = $(this).attr('data-key');
+       mainVid(id);
+   });
+   }
+   
+   }
+   
+   function resultsLoop(data) {
+   $.each(data.items, function (i, item) {
+   
+       var thumb = item.snippet.thumbnails.medium.url;
+       var title = item.snippet.title;
+       var desc = item.snippet.description.substring(0, 100);
+       var vid = item.snippet.resourceId.videoId;
+   
+   
+       // Append the music from the playlist to be displayed on the screen
+       $('main').append(`
+       <article class="item" data-key="${vid}">
+   
+           <img src="${thumb}" alt="" class="thumb">
+           <div class="details">
+           <h4>${title}</h4>
+           <p>${desc}</p>
+           </div>
+   
+       </article>
+       `);
+   });
+   }
+   
+   
+   });
 </script>
 </html>
